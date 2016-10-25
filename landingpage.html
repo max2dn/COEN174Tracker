@@ -12,7 +12,7 @@
 		<div class="leftcol">
 			<h2> COEN Requirements </h2>
 			<form>
-				Click the class requirements you have completed
+				Click the class requirements you have completed <br>
 				<input type="checkbox"> COEN XXX <br>
 				<input type="checkbox"> COEN XXX <br>
 				<input type="checkbox"> COEN XXX <br>
@@ -51,5 +51,42 @@
 				<input type="checkbox"> COEN XXX <br>
 			</form>
 		</div>
+		<div class="rightcol">
+			<h2> Other Courses </h2>
+			Use the dropdown to select classes. <br>
+			<form> 
+				Department
+				<select placeholder="Department">
+					<option value="null"> ---- </option>
+					<option value="RSOC"> RSOC </option>
+					<option value="TESP"> TESP </option>
+				</select>
+				Course Number <input type="number" placeholder="11" min="0" step="1" max="400">
+				<button name="add" onclick="addClass()"> + </button>
+			</form>
+		</div>
+		<div class="rightcol">
+			<h2> Future Courses </h2>
+			Use the dropdown to select classes. <br>
+			<form> 
+				Department
+				<select placeholder="Department">
+					<option value="null"> ---- </option>
+					<option value="RSOC"> RSOC </option>
+					<option value="TESP"> TESP </option>
+				</select>
+				Course Number <input type="number" placeholder="11" min="0" step="1" max="400">
+				<button name="add" onclick="addClass()"> + </button>
+			</form>
+		</div>
 	</body>
+	<footer>
+		<hr>
+		Webpage Created by: <br>
+		Maxen Chung <br>
+		Brett Harrison <br>
+		Brian Pingel <br>
+
+		Email all complaints to <email> complaints@nobody.cares </email>
+	</footer>
 </html>
