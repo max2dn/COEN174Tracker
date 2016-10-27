@@ -17,5 +17,14 @@ function delClass(){
 }
 
 function colorUpdate(){
-	
+
+}
+
+function checkbox(){
+	//updateArray(this.value);
+	this.style.color = "green";
+}
+
+function updateArray(item){
+
 }
