@@ -33,13 +33,21 @@ function dropdown(id){
 	if(id.id == "otherButton"){
 		parent = document.getElementById("otherList");
 		text = document.createTextNode(document.getElementById("otherDropdown").value+' '+document.getElementById("otherNumber").value);
-		nodeId = document.getElementById("otherDropdown").value+' '+document.getElementById("otherNumber").value;
+		nodeId = document.getElementById("otherDropdown").value+' '+pad(document.getElementById("otherNumber").value);
+		if(!inputCheck(document.getElementById("otherNumber").value)){
+			document.getElementById("otherNumber").focus();
+			return;
+		}
 	}
 	else if(id.id == "futureButton"){
 		parent = document.getElementById("futureList");
 		text = document.createTextNode(document.getElementById("futureDropdown").value+' '+document.getElementById("futureNumber").value);
-		nodeId = document.getElementById("futureDropdown").value+' '+document.getElementById("futureNumber").value;
+		nodeId = document.getElementById("futureDropdown").value+' '+pad(document.getElementById("futureNumber").value);
 		node.setAttribute("class", "fCourse");
+		if(!inputCheck(document.getElementById("otherNumber").value)){
+			document.getElementById("futureNumber").focus();
+			return;
+		}
 	}
 
 	for(var i = 0; i < document.getElementById("otherList").children.length; i++){
@@ -56,6 +64,8 @@ function dropdown(id){
 	node.setAttribute("onmouseleave", "delHoverOff(this)");
 	node.setAttribute("onclick", "clickChild(this)");
 	parent.appendChild(node);
+
+	bakeCookie(parent, 30);
 }
 
 function delHoverOn(id){
@@ -69,4 +79,6 @@ function delHoverOff(id){
 function clickChild(id){
 	var parent = id.parentElement;
 	parent.removeChild(id);
+
+	cutCookie(id);
 }
