@@ -20,11 +20,21 @@ function colorUpdate(){
 
 }
 
-function checkbox(){
+function checkbox(id){
 	//updateArray(this.value);
-	this.style.color = "green";
+	if(id.style.color == "green")
+		id.style.color = "black";
+	else
+		id.style.color = "green";
 }
 
 function updateArray(item){
+	if(greenClasses.find(item))
+		return;
 
+}
+
+//Start with an empty list, with each click add a list element with the Dept and Number
+function dropdown(id){
+	document.getElementById("testdiv").innerHTML = document.getElementById("otherDropdown").value+document.getElementById("otherNumber").value;
 }

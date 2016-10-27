@@ -2,17 +2,18 @@
 <html>
 	<head>
 		<title>COEN Degree Tracker</title>
-		<script type="text/js" src="logic.js"></script>
+		<script type="text/javascript" src="logic.js"></script>
 		<style type="text/css" src="styles.css"></style>
 	</head>
 	<body>
 
 		<h1>COEN Degree Tracker</h1>
 		<div class="leftcol">
-			<h2> COEN Requirements </h2>
+			<h2 onclick="checkbox(this)"> COEN Requirements </h2>
 			<form>
 				Click the class requirements you have completed <br>
-				<input type="checkbox" id="engr1" value="engr1"> ENGR 1 <br>
+				<span id="test" value="test" onclick="checkbox(this)"> &#9633 TEST </span> <br>
+				<input type="checkbox" id="engr1" value="engr1" onclick="checkbox(this)"> ENGR 1 <br>
 				<input type="checkbox" id="coen10" value="coen10"> COEN 10 <br>
 				<input type="checkbox" id="coen11" value="coen11"> COEN 11 <br>
 				<input type="checkbox" id="coen12" value="coen12"> COEN 12 <br>
@@ -46,7 +47,7 @@
 				<input type="checkbox" id="amth108" value="amth108"> AMTH 108 <br>
 			</form>
 		</div>
-		<div class="rightcol">
+		<div class="rightcol" id="otherClasses">
 			<h2> Other Courses </h2>
 			Use the dropdown to select classes. <br>
 			<form> 
@@ -80,8 +81,9 @@
 					<option value="CTW"> CTW </option>
 				</select>
 				Course Number <input type="number" placeholder="11" min="0" step="1" max="400" id="otherNumber">
-				<button name="add" onclick="addClass()" id="otherButton"> + </button>
+				<input type="button" name="add" id="otherButton" onclick="dropdown()"> + </input>
 			</form>
+			<div id="testdiv"> </div>
 		</div>
 		<div class="rightcol">
 			<h2> Future Courses </h2>
