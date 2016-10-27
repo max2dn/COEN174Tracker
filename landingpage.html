@@ -2,7 +2,6 @@
 <html>
 	<head>
 		<title>COEN Degree Tracker</title>
-		<meta>UTF-8</meta>
 		<script type="text/js" src="logic.js"></script>
 		<style type="text/css" src="styles.css"></style>
 	</head>
@@ -13,42 +12,38 @@
 			<h2> COEN Requirements </h2>
 			<form>
 				Click the class requirements you have completed <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
-				<input type="checkbox"> COEN XXX <br>
+				<input type="checkbox" id="engr1" value="engr1"> ENGR 1 <br>
+				<input type="checkbox" id="coen10" value="coen10"> COEN 10 <br>
+				<input type="checkbox" id="coen11" value="coen11"> COEN 11 <br>
+				<input type="checkbox" id="coen12" value="coen12"> COEN 12 <br>
+				<input type="checkbox" id="coen19" value="coen19"> COEN 19 <br>
+				<input type="checkbox" id="coen20" value="coen20"> COEN 20 <br>
+				<input type="checkbox" id="coen21" value="coen21"> COEN 21 <br>
+				<input type="checkbox" id="coen70" value="coen70"> COEN 70 <br>
+				<input type="checkbox" id="coen122" value="coen122"> COEN 122 <br>
+				<input type="checkbox" id="coen146" value="coen146"> COEN 146 <br>
+				<input type="checkbox" id="coen171" value="coen171"> COEN 171 <br>
+				<input type="checkbox" id="coen174" value="coen174"> COEN 174 <br>
+				<input type="checkbox" id="coen175" value="coen175"> COEN 175 <br>
+				<input type="checkbox" id="coen177" value="coen177"> COEN 177 <br>
+				<input type="checkbox" id="coen179" value="coen179"> COEN 179 <br>
+				<input type="checkbox" id="coen194" value="coen194"> COEN 194 <br>
+				<input type="checkbox" id="coen195" value="coen195"> COEN 195 <br>
+				<input type="checkbox" id="coen196" value="coen196"> COEN 196 <br>
+				<input type="checkbox" id="elen50" value="elen50"> ELEN 50 <br>
+				<input type="checkbox" id="elen153" value="elen153"> ELEN 153 <br>
+				<input type="checkbox" id="engl181" value="engl181"> ENGL 181 <br>
+				<input type="checkbox" id="math11" value="math11"> MATH 11 <br>
+				<input type="checkbox" id="math12" value="math12"> MATH 12 <br>
+				<input type="checkbox" id="math13" value="math13"> MATH 13 <br>
+				<input type="checkbox" id="math14" value="math14"> MATH 14 <br>
+				<input type="checkbox" id="math53" value="math53"> MATH 53 <br>
+				<input type="checkbox" id="phys31" value="phys31"> PHYS 31 <br>
+				<input type="checkbox" id="phys32" value="phys32"> PHYS 32 <br>
+				<input type="checkbox" id="phys33" value="phys33"> PHYS 33 <br>
+				<input type="checkbox" id="chem11" value="chem11"> CHEM 11 <br>
+				<input type="checkbox" id="amth106" value="amth106"> AMTH 106 <br>
+				<input type="checkbox" id="amth108" value="amth108"> AMTH 108 <br>
 			</form>
 		</div>
 		<div class="rightcol">
@@ -56,13 +51,36 @@
 			Use the dropdown to select classes. <br>
 			<form> 
 				Department
-				<select placeholder="Department">
+				<select placeholder="Department" id="otherDropdown">
 					<option value="null"> ---- </option>
+					<option value="COEN"> COEN </option>
+					<option value="AMTH"> AMTH </option>
+					<option value="ELEN"> ELEN </option>
+					<option value="MATH"> MATH </option>
+					<option value="PHYS"> PHYS </option>
+					<option value="CHEM"> CHEM </option>
+					<option value="BIOL"> BIOL </option>
 					<option value="RSOC"> RSOC </option>
+					<option value="SCTR"> SCTR </option>
 					<option value="TESP"> TESP </option>
+					<option value="WGST"> WGST </option>
+					<option value="ENGL"> ENGL </option>
+					<option value="ENGR"> ENGR </option>
+					<option value="PHIL"> PHIL </option>
+					<option value="ETHN"> ETHN </option>
+					<option value="PSYC"> PSYC </option>
+					<option value="HIST"> HIST </option>
+					<option value="CLAS"> CLAS </option>
+					<option value="ART"> ART </option>
+					<option value="THTR"> THTR </option>
+					<option value="COMM"> COMM </option>
+					<option value="MUSC"> MUSC </option>
+					<option value="ACTG"> ACTG </option>
+					<option value="MRKT"> MRKT </option>
+					<option value="CTW"> CTW </option>
 				</select>
-				Course Number <input type="number" placeholder="11" min="0" step="1" max="400">
-				<button name="add" onclick="addClass()"> + </button>
+				Course Number <input type="number" placeholder="11" min="0" step="1" max="400" id="otherNumber">
+				<button name="add" onclick="addClass()" id="otherButton"> + </button>
 			</form>
 		</div>
 		<div class="rightcol">
@@ -70,13 +88,36 @@
 			Use the dropdown to select classes. <br>
 			<form> 
 				Department
-				<select placeholder="Department">
+				<select placeholder="Department" id="futureDropdown">
 					<option value="null"> ---- </option>
+					<option value="COEN"> COEN </option>
+					<option value="AMTH"> AMTH </option>
+					<option value="ELEN"> ELEN </option>
+					<option value="MATH"> MATH </option>
+					<option value="PHYS"> PHYS </option>
+					<option value="CHEM"> CHEM </option>
+					<option value="BIOL"> BIOL </option>
 					<option value="RSOC"> RSOC </option>
+					<option value="SCTR"> SCTR </option>
 					<option value="TESP"> TESP </option>
+					<option value="WGST"> WGST </option>
+					<option value="ENGL"> ENGL </option>
+					<option value="ENGR"> ENGR </option>
+					<option value="PHIL"> PHIL </option>
+					<option value="ETHN"> ETHN </option>
+					<option value="PSYC"> PSYC </option>
+					<option value="HIST"> HIST </option>
+					<option value="CLAS"> CLAS </option>
+					<option value="ART"> ART </option>
+					<option value="THTR"> THTR </option>
+					<option value="COMM"> COMM </option>
+					<option value="MUSC"> MUSC </option>
+					<option value="ACTG"> ACTG </option>
+					<option value="MRKT"> MRKT </option>
+					<option value="CTW"> CTW </option>
 				</select>
-				Course Number <input type="number" placeholder="11" min="0" step="1" max="400">
-				<button name="add" onclick="addClass()"> + </button>
+				Course Number <input type="number" placeholder="11" min="0" step="1" max="400" id="futureNumber">
+				<button name="add" onclick="addClass()" id="futureButton"> + </button>
 			</form>
 		</div>
 	</body>
