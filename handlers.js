@@ -78,9 +78,17 @@ function delHoverOff(id){
 
 function clickChild(id){
 	var parent = id.parentElement;
-	parent.removeChild(id);
+	var list = localStorage.getItem(parent.id);
+	var startLoc = list.search(id.id);
+	if (startLoc == -1)
+		console.log("Item Does Not Exist");
+	
+	var newList = list.substr(0,startLoc);
+	var secondList = list.substr(startLoc+9);
+	newList = newList + secondList;
+	localStorage.setItem(parent.id,newList);
 
-	cutCookie(id);
+	parent.removeChild(id);
 }
 
 function clickSearch(id){
