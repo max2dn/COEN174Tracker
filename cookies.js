@@ -24,14 +24,26 @@ function fillLists(){
     if(typeof(Storage) !== 'undefined'){
         var l1 = document.getElementById('otherList');
         var l2 = document.getElementById('futureList');
-        
-        var text = localStorage.getItem('otherList');
-        var node = document.createElement("LI");
-        node.setAttribute("onmouseenter", "delHoverOn(this)");
-        node.setAttribute("onmouseleave", "delHoverOff(this)");
-        node.setAttribute("onclick", "clickChild(this)");
-        node.innerHTML = text;
-        l1.appendChild(node);
+        var text = localStorage.getItem('otherList').split(',');
+        for(var i = 0; i < text.length - 1; i++){
+            var node = document.createElement("LI");
+            node.setAttribute("onmouseenter", "delHoverOn(this)");
+            node.setAttribute("onmouseleave", "delHoverOff(this)");
+            node.setAttribute("onclick", "clickChild(this)");      
+            node.innerHTML = text[i];
+            console.log(text[i]);
+            l1.appendChild(node);
+        }
+        text = localStorage.getItem('futureList').split(',');
+        for(var i = 0; i < text.length - 1; i++){
+            var node = document.createElement("LI");
+            node.setAttribute("onmouseenter", "delHoverOn(this)");
+            node.setAttribute("onmouseleave", "delHoverOff(this)");
+            node.setAttribute("onclick", "clickChild(this)");      
+            node.innerHTML = text[i];
+            console.log(text[i]);
+            l2.appendChild(node);
+        }
     }
 }
 
