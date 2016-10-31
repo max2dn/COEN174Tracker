@@ -32,7 +32,7 @@ function dropdown(id){
 
 	if(id.id == "otherButton"){
 		parent = document.getElementById("otherList");
-		text = document.createTextNode(document.getElementById("otherDropdown").value+' '+document.getElementById("otherNumber").value);
+		text = document.createTextNode(document.getElementById("otherDropdown").value+' '+pad(document.getElementById("otherNumber").value));
 		nodeId = document.getElementById("otherDropdown").value+' '+pad(document.getElementById("otherNumber").value);
 		if(!inputCheck(document.getElementById("otherNumber").value)){
 			document.getElementById("otherNumber").focus();
@@ -41,7 +41,7 @@ function dropdown(id){
 	}
 	else if(id.id == "futureButton"){
 		parent = document.getElementById("futureList");
-		text = document.createTextNode(document.getElementById("futureDropdown").value+' '+document.getElementById("futureNumber").value);
+		text = document.createTextNode(document.getElementById("futureDropdown").value+' '+pad(document.getElementById("futureNumber").value));
 		nodeId = document.getElementById("futureDropdown").value+' '+pad(document.getElementById("futureNumber").value);
 		node.setAttribute("class", "fCourse");
 		if(!inputCheck(document.getElementById("otherNumber").value)){
@@ -65,7 +65,7 @@ function dropdown(id){
 	node.setAttribute("onclick", "clickChild(this)");
 	parent.appendChild(node);
 
-	bakeCookie(parent, 30);
+	saveList(parent);
 }
 
 function delHoverOn(id){
@@ -81,4 +81,8 @@ function clickChild(id){
 	parent.removeChild(id);
 
 	cutCookie(id);
+}
+
+function clickSearch(id){
+
 }
