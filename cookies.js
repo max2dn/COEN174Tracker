@@ -29,7 +29,8 @@ function fillLists(){
             var node = document.createElement("LI");
             node.setAttribute("onmouseenter", "delHoverOn(this)");
             node.setAttribute("onmouseleave", "delHoverOff(this)");
-            node.setAttribute("onclick", "clickChild(this)");      
+            node.setAttribute("onclick", "clickChild(this)");
+            node.setAttribute("id", text[i]);     
             node.innerHTML = text[i];
             console.log(text[i]);
             l1.appendChild(node);
@@ -39,7 +40,8 @@ function fillLists(){
             var node = document.createElement("LI");
             node.setAttribute("onmouseenter", "delHoverOn(this)");
             node.setAttribute("onmouseleave", "delHoverOff(this)");
-            node.setAttribute("onclick", "clickChild(this)");      
+            node.setAttribute("onclick", "clickChild(this)");
+            node.setAttribute("id", text[i]);     
             node.innerHTML = text[i];
             console.log(text[i]);
             l2.appendChild(node);
