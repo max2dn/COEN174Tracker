@@ -50,3 +50,16 @@ function spacer(string){
 	right = string.substr(4);
 	return left+' '+right;
 }
+
+function showProgress(section){
+	var bar = document.createElement("PROGRESS");
+	var max = 0, current = 0;
+	for(var i = 1; i < section.childNodes.length; i++){
+		max++;
+		if(section.childNodes[i].style.color !== 'black')
+			current++;
+	}
+	bar.setAttribute('max', max);
+	bar.setAttribute('value', current);
+	section.insertBefore(bar, section.childNodes[0]);
+}

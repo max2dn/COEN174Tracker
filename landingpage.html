@@ -19,11 +19,11 @@
 		<div class="rightcol" id="otherClasses">
 			<h2> Current Courses </h2>
 			Use the dropdown to select classes. <br>
-			<form id="otherForm">
+			<form onsubmit="return false" id="otherForm" >
 				<fieldset>
 					Department
 					<select placeholder="Department" id="otherDropdown">
-						<option value="null"> ---- </option>
+						<option value="null" disabled selected value> ---- </option>
 						<option value="COEN"> COEN </option>
 						<option value="AMTH"> AMTH </option>
 						<option value="ELEN"> ELEN </option>
@@ -50,8 +50,8 @@
 						<option value="MRKT"> MRKT </option>
 						<option value="CTW "> CTW </option>
 					</select>
-					Course Number (000-499)<input type="number" placeholder="011" min="001" step="1" max="499" id="otherNumber">
-					<input type="submit" name="addOther" id="otherButton" value="+" onclick="dropdown(this)">
+					Course Number (000-499)<input required="required" type="number" placeholder="011" min="001" step="1" max="499" id="otherNumber">
+					<input required="required" type="submit" name="addOther" id="otherButton" value="+" onclick="dropdown(this)">
 				</fieldset>
 			</form>
 			<ul id="otherList">
@@ -60,11 +60,11 @@
 		<div class="rightcol">
 			<h2> Future Courses </h2>
 			Use the dropdown to select classes. <br>
-			<form id="futureForm">
+			<form onsubmit="return false" id="futureForm">
 				<fieldset> 
 					Department
 					<select placeholder="Department" id="futureDropdown">
-						<option value="null"> ---- </option>
+						<option value="null" disabled selected value> ---- </option>
 						<option value="COEN"> COEN </option>
 						<option value="AMTH"> AMTH </option>
 						<option value="ELEN"> ELEN </option>
@@ -91,8 +91,8 @@
 						<option value="MRKT"> MRKT </option>
 						<option value="CTW "> CTW </option>
 					</select>
-					Course Number (000-499)<input type="number" placeholder="011" min="001" step="1" max="499" id="futureNumber">
-					<input type="submit" name="addOther" id="futureButton" value="+" onclick="dropdown(this)">
+					Course Number (000-499)<input required="required" type="number" placeholder="011" min="001" step="1" max="499" id="futureNumber">
+					<input required="required" type="submit" name="addOther" id="futureButton" value="+" onclick="dropdown(this)">
 				</fieldset>
 			</form>
 			<ul id="futureList">
@@ -100,8 +100,8 @@
 		</div>
 		<div class="bottomForm" id="reqField">
 			<fieldset>
-				<div id="COENField">
-					<h3>Major Requirements</h3>
+				<h3>Major Requirements</h3>
+				<div id="COENField" onload="showProgress(this)">
 					<span id="nENGR001"> ENGR 001 </span> <br>
 					<span id="nCOEN010"> COEN 010 </span> <br>
 					<span id="nCOEN011"> COEN 011 </span> <br>
@@ -131,12 +131,11 @@
 					<span id="nPHYS031"> PHYS 031 </span> <br>
 					<span id="nPHYS032"> PHYS 032 </span> <br>
 					<span id="nPHYS033"> PHYS 033 </span> <br>
-					<span id="nCHEM011"> CHEM 011 </span> <br>
 					<span id="nAMTH106"> AMTH 106 </span> <br>
 					<span id="nAMTH108"> AMTH 108 </span> <br>
 				</div>
+				<h3>University Core Requirements</h3>
 				<div id="coreField">
-					<h3>University Core Requirements</h3>
 					<span id="nRTC1">RTC I</span> </br>
 					<span id="nRTC2">RTC II</span> </br>
 					<span id="nRTC3">RTC III</span> </br>
@@ -151,6 +150,11 @@
 					<span id="nSSCI">Social Science</span> </br>
 					<span id="nELSJ">ELSJ</span> </br>
 					<span id="nADVW">Advanced Writing</span> </br>
+				</div>
+				<h3>Educational Enrichment</h3>
+				<div id="enrichmentField">
+					<div id="enrichList">
+					</div>
 				</div>
 			</fieldset>
 		</div>

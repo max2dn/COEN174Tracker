@@ -33,7 +33,6 @@ function fillLists(){
             node.setAttribute("onclick", "clickChild(this)");
             node.setAttribute("id", text[i]);     
             node.innerHTML = spacer(text[i]);
-            console.log(node.innerHTML);
             l1.appendChild(node);
             checkAndUpdate('otherList', text[i]);
         }
@@ -45,7 +44,6 @@ function fillLists(){
             node.setAttribute("onclick", "clickChild(this)");
             node.setAttribute("id", text[i]);     
             node.innerHTML = spacer(text[i]);
-            console.log(node.innerHTML);
             l2.appendChild(node);
             checkAndUpdate('futureList', text[i]);
         }
@@ -63,14 +61,21 @@ function checkAndUpdate(caller, key){
             else
                 reqs.push(str);
         }
-        else
-            console.log("Has no key");
+        else{
+            console.log(caller);
+            var onPage = document.getElementById('enrichList');
+            var node = document.createElement("span");
+            node.setAttribute("id", 'x'+key);
+            node.innerHTML = "Contributed by "+spacer(key)+'<br>';
+            onPage.appendChild(node);
+            return;
+        }
         checkAndUpdateExceptions(caller, key);
         for(var i = 0; i < reqs.length; i++){
             var onPage = document.getElementById('n'+reqs[i]);
             var node = document.createElement("span");
             node.setAttribute("id", 'x'+key);
-            node.innerHTML = " - Satisfied by "+key;
+            node.innerHTML = " - Satisfied by "+spacer(key);
             onPage.appendChild(node);
             if(caller == 'otherList')
                 onPage.style.color = "green";
@@ -80,6 +85,7 @@ function checkAndUpdate(caller, key){
     }
 }
 function checkAndDelete(key){
+    checkAndDeleteExceptions(key);
     var classMap = makeMap();
     var reqs = [];
     if(classMap.has(key)){
@@ -89,8 +95,10 @@ function checkAndDelete(key){
         else
             reqs.push(str);
     }
-    else
-        console.log("Has no key: "+key);
+    else{
+        var node = document.getElementById('x'+key);
+        node.parentElement.removeChild(node);
+    }
     for(var i = 0; i < reqs.length; i++){
         var onPage = document.getElementById('n'+reqs[i]);
         if(onPage.children.length > 0){
@@ -171,6 +179,60 @@ function checkAndUpdateExceptions(caller, key) {
     if (caller == "otherList" && green == true)
         color = "Green";
     updatePage(element,key, key2, color);
+}
+
+function checkAndDeleteExceptions(key){
+
+        if(key == "ENGL181"){
+
+                var onPage = document.getElementById("nARTS");
+
+                if(onPage.childNodes.length > 1 && onPage.childNodes[1].innerHTML.search("ENGL181") != -1){
+
+                        onPage.removeChild(onPage.childNodes[1]);
+
+                        onPage.style.color = 'black';
+
+                }   
+
+        } else if (key == "ENGR001"){
+
+                var onPage = document.getElementById("nCIVE");
+
+                if(onPage.childNodes.length > 1 && onPage.childNodes[1].innerHTML.search("ENGR001") != -1){
+
+                        onPage.removeChild(onPage.childNodes[1]);
+
+                        onPage.style.color = 'black';
+
+                }   
+
+        } else if (key == "COEN196"){
+
+                var onPage = document.getElementById("nARTS");
+
+                if(onPage.childNodes.length > 1 && onPage.childNodes[1].innerHTML.search("COEN196") != -1){
+
+                        onPage.removeChild(onPage.childNodes[1]);
+
+                        onPage.style.color = 'black';
+
+                }   
+
+
+
+                onPage = document.getElementById("nCIVE");
+
+                if(onPage.childNodes.length > 1 && onPage.childNodes[1].innerHTML.search("COEN196") != -1){
+
+                        onPage.removeChild(onPage.childNodes[1]);
+
+                        onPage.style.color = 'black';
+
+                }   
+
+        }   
+
 }
 /*\
 function setCookie(cname, cvalue, exdays) {

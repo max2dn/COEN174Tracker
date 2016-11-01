@@ -25,6 +25,10 @@ function dropdown(id){
 	var nodeId;
 
 	if(id.id == "otherButton"){
+		if(document.getElementById('otherDropdown').value == 'null' || '' == document.getElementById('otherNumber').value){
+			document.getElementById("otherDropdown").focus();
+			return;
+		}
 		parent = document.getElementById("otherList");
 		text = document.createTextNode(document.getElementById("otherDropdown").value+' '+pad(document.getElementById("otherNumber").value));
 		nodeId = document.getElementById("otherDropdown").value+pad(document.getElementById("otherNumber").value);
@@ -33,9 +37,15 @@ function dropdown(id){
 			return;
 		}
 		checkAndUpdate('otherList', document.getElementById("otherDropdown").value+pad(document.getElementById("otherNumber").value));
+		document.getElementById('otherForm').reset();
+		document.getElementById('otherDropdown').focus();
 
 	}
 	else if(id.id == "futureButton"){
+		if(document.getElementById('futureDropdown').value == 'null' || '' == document.getElementById('futureNumber').value){
+			document.getElementById("futureDropdown").focus();
+			return;
+		}
 		parent = document.getElementById("futureList");
 		text = document.createTextNode(document.getElementById("futureDropdown").value+' '+pad(document.getElementById("futureNumber").value));
 		nodeId = document.getElementById("futureDropdown").value+pad(document.getElementById("futureNumber").value);
@@ -45,6 +55,8 @@ function dropdown(id){
 			return;
 		}
 		checkAndUpdate('futureList', document.getElementById("futureDropdown").value+pad(document.getElementById("futureNumber").value));
+		document.getElementById('futureForm').reset();
+		document.getElementById('futureDropdown').focus();
 	}
 
 	for(var i = 0; i < document.getElementById("otherList").children.length; i++){
@@ -81,7 +93,6 @@ function clickChild(id){
 		
 		var startLoc = list.search(id.id);
 		if (startLoc == -1)
-			console.log("Item Does Not Exist");
 		
 		var newList = list.substr(0,startLoc);
 		var secondList = list.substr(startLoc+8);
