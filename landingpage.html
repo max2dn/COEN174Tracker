@@ -12,50 +12,12 @@
 	<body onload="fillLists()">
 
 		<h1 onload="loadListener()">COEN Degree Tracker</h1>
-		<div class="leftcol">
-			<h2> COEN Requirements </h2>
-			<form>
-				Click the class requirements you have completed <br>
-				<span id="engr001" value="engr001" onclick="checkbox(this)"> &#9633; ENGR 001 </span> <br>
-				<span id="coen010" value="coen010" onclick="checkbox(this)"> &#9633; COEN 010 </span> <br>
-				<span id="coen011" value="coen011" onclick="checkbox(this)"> &#9633; COEN 011 </span> <br>
-				<span id="coen012" value="coen012" onclick="checkbox(this)"> &#9633; COEN 012 </span> <br>
-				<span id="coen019" value="coen019" onclick="checkbox(this)"> &#9633; COEN 019 </span> <br>
-				<span id="coen020" value="coen020" onclick="checkbox(this)"> &#9633; COEN 020 </span> <br>
-				<span id="coen021" value="coen021" onclick="checkbox(this)"> &#9633; COEN 021 </span> <br>
-				<span id="coen070" value="coen070" onclick="checkbox(this)"> &#9633; COEN 070 </span> <br>
-				<span id="coen122" value="coen122" onclick="checkbox(this)"> &#9633; COEN 122 </span> <br>
-				<span id="coen146" value="coen146" onclick="checkbox(this)"> &#9633; COEN 146 </span> <br>
-				<span id="coen171" value="coen171" onclick="checkbox(this)"> &#9633; COEN 171 </span> <br>
-				<span id="coen174" value="coen174" onclick="checkbox(this)"> &#9633; COEN 174 </span> <br>
-				<span id="coen175" value="coen175" onclick="checkbox(this)"> &#9633; COEN 175 </span> <br>
-				<span id="coen177" value="coen177" onclick="checkbox(this)"> &#9633; COEN 177 </span> <br>
-				<span id="coen179" value="coen179" onclick="checkbox(this)"> &#9633; COEN 179 </span> <br>
-				<span id="coen194" value="coen194" onclick="checkbox(this)"> &#9633; COEN 194 </span> <br>
-				<span id="coen195" value="coen195" onclick="checkbox(this)"> &#9633; COEN 195 </span> <br>
-				<span id="coen196" value="coen196" onclick="checkbox(this)"> &#9633; COEN 196 </span> <br>
-				<span id="elen050" value="elen050" onclick="checkbox(this)"> &#9633; ELEN 050 </span> <br>
-				<span id="elen153" value="elen153" onclick="checkbox(this)"> &#9633; ELEN 153 </span> <br>
-				<span id="engl181" value="engl181" onclick="checkbox(this)"> &#9633; ENGL 181 </span> <br>
-				<span id="math011" value="math011" onclick="checkbox(this)"> &#9633; MATH 011 </span> <br>
-				<span id="math012" value="math012" onclick="checkbox(this)"> &#9633; MATH 012 </span> <br>
-				<span id="math013" value="math013" onclick="checkbox(this)"> &#9633; MATH 013 </span> <br>
-				<span id="math014" value="math014" onclick="checkbox(this)"> &#9633; MATH 014 </span> <br>
-				<span id="math053" value="math053" onclick="checkbox(this)"> &#9633; MATH 053 </span> <br>
-				<span id="phys031" value="phys031" onclick="checkbox(this)"> &#9633; PHYS 031 </span> <br>
-				<span id="phys032" value="phys032" onclick="checkbox(this)"> &#9633; PHYS 032 </span> <br>
-				<span id="phys033" value="phys033" onclick="checkbox(this)"> &#9633; PHYS 033 </span> <br>
-				<span id="chem011" value="chem011" onclick="checkbox(this)"> &#9633; CHEM 011 </span> <br>
-				<span id="amth106" value="amth106" onclick="checkbox(this)"> &#9633; AMTH 106 </span> <br>
-				<span id="amth108" value="amth108" onclick="checkbox(this)"> &#9633; AMTH 108 </span> <br>
-			</form>
-		</div>
-		<div class="rightcol" id="searchBox">
+		<!--<div class="rightcol" id="searchBox">
 			<h2> Search for a Class
 			<input type="search" name="searchBox" id="searchBox" placeholder="ETHN 101 Underwater Basket Weaving" autocomplete="autocomplete" pattern="[A-Z]{3}[A-Z]?[ ][0-9]{3}"><input type="button" id="searchButton" value="Search" onclick="clickSearch(this)">
-		</div>
+		</div>-->
 		<div class="rightcol" id="otherClasses">
-			<h2> Other Courses </h2>
+			<h2> Current Courses </h2>
 			Use the dropdown to select classes. <br>
 			<form id="otherForm">
 				<fieldset>
@@ -89,7 +51,7 @@
 						<option value="CTW "> CTW </option>
 					</select>
 					Course Number (000-499)<input type="number" placeholder="011" min="001" step="1" max="499" id="otherNumber">
-					<input type="button" name="addOther" id="otherButton" value="+" onclick="dropdown(this)">
+					<input type="submit" name="addOther" id="otherButton" value="+" onclick="dropdown(this)">
 				</fieldset>
 			</form>
 			<ul id="otherList">
@@ -130,7 +92,7 @@
 						<option value="CTW "> CTW </option>
 					</select>
 					Course Number (000-499)<input type="number" placeholder="011" min="001" step="1" max="499" id="futureNumber">
-					<input type="button" name="addOther" id="futureButton" value="+" onclick="dropdown(this)">
+					<input type="submit" name="addOther" id="futureButton" value="+" onclick="dropdown(this)">
 				</fieldset>
 			</form>
 			<ul id="futureList">
@@ -138,26 +100,57 @@
 		</div>
 		<div class="bottomForm" id="reqField">
 			<fieldset>
-				<div id="coenField">
+				<div id="COENField">
 					<h3>Major Requirements</h3>
-
+					<span id="nENGR001"> ENGR 001 </span> <br>
+					<span id="nCOEN010"> COEN 010 </span> <br>
+					<span id="nCOEN011"> COEN 011 </span> <br>
+					<span id="nCOEN012"> COEN 012 </span> <br>
+					<span id="nCOEN019"> COEN 019 </span> <br>
+					<span id="nCOEN020"> COEN 020 </span> <br>
+					<span id="nCOEN021"> COEN 021 </span> <br>
+					<span id="nCOEN070"> COEN 070 </span> <br>
+					<span id="nCOEN122"> COEN 122 </span> <br>
+					<span id="nCOEN146"> COEN 146 </span> <br>
+					<span id="nCOEN171"> COEN 171 </span> <br>
+					<span id="nCOEN174"> COEN 174 </span> <br>
+					<span id="nCOEN175"> COEN 175 </span> <br>
+					<span id="nCOEN177"> COEN 177 </span> <br>
+					<span id="nCOEN179"> COEN 179 </span> <br>
+					<span id="nCOEN194"> COEN 194 </span> <br>
+					<span id="nCOEN195"> COEN 195 </span> <br>
+					<span id="nCOEN196"> COEN 196 </span> <br>
+					<span id="nELEN050"> ELEN 050 </span> <br>
+					<span id="nELEN153"> ELEN 153 </span> <br>
+					<span id="nENGL181"> ENGL 181 </span> <br>
+					<span id="nMATH011"> MATH 011 </span> <br>
+					<span id="nMATH012"> MATH 012 </span> <br>
+					<span id="nMATH013"> MATH 013 </span> <br>
+					<span id="nMATH014"> MATH 014 </span> <br>
+					<span id="nMATH053"> MATH 053 </span> <br>
+					<span id="nPHYS031"> PHYS 031 </span> <br>
+					<span id="nPHYS032"> PHYS 032 </span> <br>
+					<span id="nPHYS033"> PHYS 033 </span> <br>
+					<span id="nCHEM011"> CHEM 011 </span> <br>
+					<span id="nAMTH106"> AMTH 106 </span> <br>
+					<span id="nAMTH108"> AMTH 108 </span> <br>
 				</div>
 				<div id="coreField">
 					<h3>University Core Requirements</h3>
-					<span id="RTC1">RTC I</span> </br>
-					<span id="RTC2">RTC II</span> </br>
-					<span id="RTC3">RTC III</span> </br>
-					<span id="CTW12">CTW 1&2</span> </br>
-					<span id="C&I12">C&I 1-2</span> </br>
-					<span id="C&I3">C&I 3</span> </br>
-					<span id="ETHC">Ethics</span> </br>
-					<span id="CIVE">Civic Engagement</span> </br>
-					<span id="DIV">Diversity</span> </br>
-					<span id="ARTS">Arts<span> </br>
-					<span id="NSCI">Natural Science</span> </br>
-					<span id="SSCI">Social Science</span> </br>
-					<span id="ELSJ">ELSJ</span> </br>
-					<span id="ADVW">Advanced Writing</span> </br>
+					<span id="nRTC1">RTC I</span> </br>
+					<span id="nRTC2">RTC II</span> </br>
+					<span id="nRTC3">RTC III</span> </br>
+					<span id="nCTW12">CTW 1&2</span> </br>
+					<span id="nC&I12">C&I 1-2</span> </br>
+					<span id="nC&I3">C&I 3</span> </br>
+					<span id="nETHC">Ethics</span> </br>
+					<span id="nCIVE">Civic Engagement</span> </br>
+					<span id="nDIV">Diversity</span> </br>
+					<span id="nARTS">Arts</span> </br>
+					<span id="nNSCI">Natural Science</span> </br>
+					<span id="nSSCI">Social Science</span> </br>
+					<span id="nELSJ">ELSJ</span> </br>
+					<span id="nADVW">Advanced Writing</span> </br>
 				</div>
 			</fieldset>
 		</div>

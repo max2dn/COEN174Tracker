@@ -32,9 +32,10 @@ function fillLists(){
             node.setAttribute("onmouseleave", "delHoverOff(this)");
             node.setAttribute("onclick", "clickChild(this)");
             node.setAttribute("id", text[i]);     
-            node.innerHTML = text[i];
+            node.innerHTML = spacer(text[i]);
+            console.log(node.innerHTML);
             l1.appendChild(node);
-            checkAndUpdate(text[i]);
+            checkAndUpdate('otherList', text[i]);
         }
         text = localStorage.getItem('futureList').split(';');
         for(var i = 0; i < text.length - 1; i++){
@@ -43,13 +44,14 @@ function fillLists(){
             node.setAttribute("onmouseleave", "delHoverOff(this)");
             node.setAttribute("onclick", "clickChild(this)");
             node.setAttribute("id", text[i]);     
-            node.innerHTML = text[i];
+            node.innerHTML = spacer(text[i]);
+            console.log(node.innerHTML);
             l2.appendChild(node);
-            checkAndUpdate(text[i]);
+            checkAndUpdate('futureList', text[i]);
         }
     }
 }
-function checkAndUpdate(key){
+function checkAndUpdate(caller, key){
     if(typeof(Storage) !== 'undefined'){
         var classMap = makeMap();
         var reqs = [];
@@ -63,23 +65,113 @@ function checkAndUpdate(key){
         }
         else
             console.log("Has no key");
-        function updatePage(element, key){
-            var onPage = document.getElementById(element);
+        checkAndUpdateExceptions(caller, key);
+        for(var i = 0; i < reqs.length; i++){
+            var onPage = document.getElementById('n'+reqs[i]);
             var node = document.createElement("span");
-            node.setAttribute("id", "n"+key);
-            node.setAttribute("onmouseenter", "delHoverOn(this)");
-            node.setAttribute("onmouseleave", "delHoverOff(this)");
-            node.setAttribute("onclick", "clickChild(this)");
+            node.setAttribute("id", 'x'+key);
             node.innerHTML = " - Satisfied by "+key;
             onPage.appendChild(node);
-            onPage.style.color = "green";
+            if(caller == 'otherList')
+                onPage.style.color = "green";
+            else if(caller == 'futureList')
+                onPage.style.color = "blue";
         }
-        for(var i = 0; i < reqs.length; i++){
-            updatePage(reqs[i], key);
+    }
+}
+function checkAndDelete(key){
+    var classMap = makeMap();
+    var reqs = [];
+    if(classMap.has(key)){
+        var str = classMap.get(key);
+        if(str.search(','))
+            reqs = str.split(',');
+        else
+            reqs.push(str);
+    }
+    else
+        console.log("Has no key: "+key);
+    for(var i = 0; i < reqs.length; i++){
+        var onPage = document.getElementById('n'+reqs[i]);
+        if(onPage.children.length > 0){
+            onPage.removeChild(onPage.childNodes[1]);
+            onPage.style.color = 'black';
         }
     }
 }
 
+function checkAndUpdateExceptions(caller, key) {
+    var otherList = localStorage.getItem("otherList");
+    var futureList = localStorage.getItem("futureList");
+    var element;
+    var green = false;
+    var key2;
+
+    function updatePage(element, key, key2, color) {
+        if (document.getElementById("n" + element).style.color == "green" || document.getElementById("n" + element).style.color == "blue")
+            return;
+        var onPage = document.getElementById("n" + element);
+        var node = document.createElement("span");
+        node.setAttribute("id", "x"+key+key2);
+        node.innerHTML = " - Satisfied by "+key+" "+key2;
+        onPage.appendChild(node);
+        onPage.style.color = color;
+    }
+    if (key == "ENGR001") {
+        key2 = "COEN196";
+        if (otherList != null && otherList.search("COEN196") != -1) {
+            green = true;
+            element = "CIVE";
+        }
+        else if (futureList != null && futureList.search("COEN196") != -1) {
+            element = "CIVE";
+        }
+        else
+            return;
+    }
+    else if (key == "ENGL181") {
+        key2 = "COEN196";
+        if (otherList != null && otherList.search("COEN196") != -1) {
+            green = true;
+            element = "ARTS";
+        }
+        else if (futureList != null && futureList.search("COEN196") != -1) {
+            element = "ARTS";
+        }
+        else
+            return;
+    }
+    else if (key == "COEN196") {
+        if (otherList != null && otherList.search("ENGL181") != -1) {
+            element = "ARTS";
+            key2 = "ENGL181";
+            updatePage(element, key, key2, "green");
+        }
+        else if (futureList != null && futureList.search("ENGL181") != -1) {
+            element = "ARTS";
+            key2 = "ENGL181";
+            updatePage(element, key, key2, "blue");
+        }
+        if (otherList != null && otherList.search("ENGR001") != -1) {
+            element = "CIVE";
+            key2 = "ENGR001";
+            updatePage(element, key, key2, "green");
+        }
+        else if (futureList != null && futureList.search("ENGR001") != -1) {
+            element = "CIVE";
+            key2 = "ENGR001";
+            updatePage(element, key, key2, "blue");
+        }
+        return;
+    }
+    else
+        return;
+
+    var color = "Blue";
+    if (caller == "otherList" && green == true)
+        color = "Green";
+    updatePage(element,key, key2, color);
+}
 /*\
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();

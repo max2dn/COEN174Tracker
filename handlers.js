@@ -16,12 +16,6 @@ function checkbox(id){
 		id.style.color = "green";
 }
 
-function updateArray(item){
-	if(greenClasses.find(item))
-		return;
-
-}
-
 //Start with an empty list, with each click add a list element with the Dept and Number
 function dropdown(id){
 
@@ -38,7 +32,7 @@ function dropdown(id){
 			document.getElementById("otherNumber").focus();
 			return;
 		}
-		checkAndUpdate(document.getElementById("otherDropdown").value+pad(document.getElementById("otherNumber").value));
+		checkAndUpdate('otherList', document.getElementById("otherDropdown").value+pad(document.getElementById("otherNumber").value));
 
 	}
 	else if(id.id == "futureButton"){
@@ -50,7 +44,7 @@ function dropdown(id){
 			document.getElementById("futureNumber").focus();
 			return;
 		}
-		checkAndUpdate(document.getElementById("futureDropdown").value+pad(document.getElementById("futureNumber").value));
+		checkAndUpdate('futureList', document.getElementById("futureDropdown").value+pad(document.getElementById("futureNumber").value));
 	}
 
 	for(var i = 0; i < document.getElementById("otherList").children.length; i++){
@@ -84,15 +78,17 @@ function clickChild(id){
 	if(typeof(Storage) !== 'undefined'){
 		var parent = id.parentElement;
 		var list = localStorage.getItem(parent.id);
+		
 		var startLoc = list.search(id.id);
 		if (startLoc == -1)
 			console.log("Item Does Not Exist");
 		
 		var newList = list.substr(0,startLoc);
-		var secondList = list.substr(startLoc+9);
+		var secondList = list.substr(startLoc+8);
 		newList = newList + secondList;
+		
 		localStorage.setItem(parent.id,newList);
-
+		checkAndDelete(id.id);
 		parent.removeChild(id);
 	}
 }
