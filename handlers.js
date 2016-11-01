@@ -33,21 +33,24 @@ function dropdown(id){
 	if(id.id == "otherButton"){
 		parent = document.getElementById("otherList");
 		text = document.createTextNode(document.getElementById("otherDropdown").value+' '+pad(document.getElementById("otherNumber").value));
-		nodeId = document.getElementById("otherDropdown").value+' '+pad(document.getElementById("otherNumber").value);
+		nodeId = document.getElementById("otherDropdown").value+pad(document.getElementById("otherNumber").value);
 		if(!inputCheck(document.getElementById("otherNumber").value)){
 			document.getElementById("otherNumber").focus();
 			return;
 		}
+		checkAndUpdate(document.getElementById("otherDropdown").value+pad(document.getElementById("otherNumber").value));
+
 	}
 	else if(id.id == "futureButton"){
 		parent = document.getElementById("futureList");
 		text = document.createTextNode(document.getElementById("futureDropdown").value+' '+pad(document.getElementById("futureNumber").value));
-		nodeId = document.getElementById("futureDropdown").value+' '+pad(document.getElementById("futureNumber").value);
+		nodeId = document.getElementById("futureDropdown").value+pad(document.getElementById("futureNumber").value);
 		node.setAttribute("class", "fCourse");
-		if(!inputCheck(document.getElementById("otherNumber").value)){
+		if(!inputCheck(document.getElementById("futureNumber").value)){
 			document.getElementById("futureNumber").focus();
 			return;
 		}
+		checkAndUpdate(document.getElementById("futureDropdown").value+pad(document.getElementById("futureNumber").value));
 	}
 
 	for(var i = 0; i < document.getElementById("otherList").children.length; i++){
@@ -58,6 +61,7 @@ function dropdown(id){
 		if(nodeId == document.getElementById("futureList").children[j].id)
 			return;
 	}
+
 	node.appendChild(text);
 	node.id = nodeId;
 	node.setAttribute("onmouseenter", "delHoverOn(this)");
@@ -77,20 +81,35 @@ function delHoverOff(id){
 }
 
 function clickChild(id){
-	var parent = id.parentElement;
-	var list = localStorage.getItem(parent.id);
-	var startLoc = list.search(id.id);
-	if (startLoc == -1)
-		console.log("Item Does Not Exist");
-	
-	var newList = list.substr(0,startLoc);
-	var secondList = list.substr(startLoc+9);
-	newList = newList + secondList;
-	localStorage.setItem(parent.id,newList);
+	if(typeof(Storage) !== 'undefined'){
+		var parent = id.parentElement;
+		var list = localStorage.getItem(parent.id);
+		var startLoc = list.search(id.id);
+		if (startLoc == -1)
+			console.log("Item Does Not Exist");
+		
+		var newList = list.substr(0,startLoc);
+		var secondList = list.substr(startLoc+9);
+		newList = newList + secondList;
+		localStorage.setItem(parent.id,newList);
 
-	parent.removeChild(id);
+		parent.removeChild(id);
+	}
 }
+function loadListenter(){
+	document.querySelector("#otherForm").addEventListener("keypress", function(e){
+		var key = e.which || e.keyCode;
+	    if (key === 13)
+			dropdown(document.querySelector("#otherButton"));
+		else
+			return;
+	}, false);
 
-function clickSearch(id){
-
+	document.querySelector("#futureForm").addEventListener("keypress", function(e){
+		const keyName = e.key;
+		if(keyName == 'Enter')
+			dropdown(document.querySelector("#futureButton"));
+		else
+			return;
+	}, false);
 }

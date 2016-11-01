@@ -6,11 +6,12 @@
 		<script type="text/javascript" src="handlers.js"></script>
 		<script type="text/javascript" src="cookies.js"></script>
 		<script type="text/javascript" src="utilities.js"></script>
+		<script type="text/javascript" src="initialization.js"></script>
 		<style type="text/css" src="styles.css"></style>
 	</head>
 	<body onload="fillLists()">
 
-		<h1>COEN Degree Tracker</h1>
+		<h1 onload="loadListener()">COEN Degree Tracker</h1>
 		<div class="leftcol">
 			<h2> COEN Requirements </h2>
 			<form>
@@ -56,7 +57,7 @@
 		<div class="rightcol" id="otherClasses">
 			<h2> Other Courses </h2>
 			Use the dropdown to select classes. <br>
-			<form>
+			<form id="otherForm">
 				<fieldset>
 					Department
 					<select placeholder="Department" id="otherDropdown">
@@ -97,7 +98,7 @@
 		<div class="rightcol">
 			<h2> Future Courses </h2>
 			Use the dropdown to select classes. <br>
-			<form>
+			<form id="futureForm">
 				<fieldset> 
 					Department
 					<select placeholder="Department" id="futureDropdown">
@@ -134,6 +135,31 @@
 			</form>
 			<ul id="futureList">
 			</ul>
+		</div>
+		<div class="bottomForm" id="reqField">
+			<fieldset>
+				<div id="coenField">
+					<h3>Major Requirements</h3>
+
+				</div>
+				<div id="coreField">
+					<h3>University Core Requirements</h3>
+					<span id="RTC1">RTC I</span> </br>
+					<span id="RTC2">RTC II</span> </br>
+					<span id="RTC3">RTC III</span> </br>
+					<span id="CTW12">CTW 1&2</span> </br>
+					<span id="C&I12">C&I 1-2</span> </br>
+					<span id="C&I3">C&I 3</span> </br>
+					<span id="ETHC">Ethics</span> </br>
+					<span id="CIVE">Civic Engagement</span> </br>
+					<span id="DIV">Diversity</span> </br>
+					<span id="ARTS">Arts<span> </br>
+					<span id="NSCI">Natural Science</span> </br>
+					<span id="SSCI">Social Science</span> </br>
+					<span id="ELSJ">ELSJ</span> </br>
+					<span id="ADVW">Advanced Writing</span> </br>
+				</div>
+			</fieldset>
 		</div>
 	</body>
 	<footer>

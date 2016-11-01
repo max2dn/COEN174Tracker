@@ -8,6 +8,7 @@ function inputCheck(number) {
 }
 
 function pad(n) {
+	n = parseInt(n, 10);
 	if(n < 10)
 		n = "00"+n;
 	else if(n < 100)
