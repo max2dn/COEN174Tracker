@@ -90,14 +90,10 @@ function clickChild(id){
 	if(typeof(Storage) !== 'undefined'){
 		var parent = id.parentElement;
 		var list = localStorage.getItem(parent.id);
-		
 		var startLoc = list.search(id.id);
-		if (startLoc == -1)
-		
 		var newList = list.substr(0,startLoc);
 		var secondList = list.substr(startLoc+8);
-		newList = newList + secondList;
-		
+		newList = newList + secondList;	
 		localStorage.setItem(parent.id,newList);
 		checkAndDelete(id.id);
 		parent.removeChild(id);

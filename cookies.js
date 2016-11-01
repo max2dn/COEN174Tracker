@@ -70,6 +70,10 @@ function checkAndUpdate(caller, key){
             onPage.appendChild(node);
             return;
         }
+        if(classMap.get(key) == 'COENELC'){
+            elcHandler(caller, key);
+            return;
+        }
         checkAndUpdateExceptions(caller, key);
         for(var i = 0; i < reqs.length; i++){
             var onPage = document.getElementById('n'+reqs[i]);
@@ -98,6 +102,11 @@ function checkAndDelete(key){
     else{
         var node = document.getElementById('x'+key);
         node.parentElement.removeChild(node);
+        return;
+    }
+    if(classMap.get(key) == 'COENELC'){
+        elcDeleteHandler(key);
+        return;
     }
     for(var i = 0; i < reqs.length; i++){
         var onPage = document.getElementById('n'+reqs[i]);
@@ -233,6 +242,27 @@ function checkAndDeleteExceptions(key){
 
         }   
 
+}
+
+function elcHandler(caller, key){
+    var node = document.createElement("LI");
+    node.setAttribute('id', 'x'+key);
+    node.innerHTML = key;
+    document.getElementById('nCOENELC').appendChild(node);
+    if(document.getElementById('nCOENELC').childNodes.length >= 4){
+        document.getElementById('COENELCHeader').style.color = 'green';
+    }
+    if(caller == 'otherList')
+        node.style.color = "green";
+    else
+        node.style.color = 'blue';
+}
+
+function elcDeleteHandler(key){
+    var node = document.getElementById('x'+key);
+    node.parentElement.removeChild(node);
+    if(document.getElementById('nCOENELC').childNodes.length < 4)
+        document.getElementById('COENELCHeader').style.color = 'black';
 }
 /*\
 function setCookie(cname, cvalue, exdays) {
