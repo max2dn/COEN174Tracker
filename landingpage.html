@@ -19,7 +19,7 @@
 		<div class="rightcol" id="otherClasses">
 			<h2> Current Courses </h2>
 			Use the dropdown to select classes. <br>
-			<form onsubmit="return false" id="otherForm" >
+			<form onsubmit="return false" id="otherForm">
 				<fieldset>
 					Department
 					<select placeholder="Department" id="otherDropdown">
@@ -50,8 +50,8 @@
 						<option value="MRKT"> MRKT </option>
 						<option value="CTW "> CTW </option>
 					</select>
-					Course Number (000-499)<input required="required" type="number" placeholder="011" min="001" step="1" max="499" id="otherNumber">
-					<input required="required" type="submit" name="addOther" id="otherButton" value="+" onclick="dropdown(this)">
+					Course Number (000-499)<input type="number" placeholder="011" min="001" step="1" max="499" id="otherNumber">
+					<input type="submit" name="addOther" id="otherButton" value="+" onclick="dropdown(this)">
 				</fieldset>
 			</form>
 			<ul id="otherList">
@@ -91,8 +91,8 @@
 						<option value="MRKT"> MRKT </option>
 						<option value="CTW "> CTW </option>
 					</select>
-					Course Number (000-499)<input required="required" type="number" placeholder="011" min="001" step="1" max="499" id="futureNumber">
-					<input required="required" type="submit" name="addOther" id="futureButton" value="+" onclick="dropdown(this)">
+					Course Number (000-499)<input type="number" placeholder="011" min="001" step="1" max="499" id="futureNumber">
+					<input type="submit" name="addOther" id="futureButton" value="+" onclick="dropdown(this)">
 				</fieldset>
 			</form>
 			<ul id="futureList">
