@@ -6,7 +6,7 @@
 
 function init(){
         //COEN Requirement Arrays
-	var COENArray = "COEN010:COEN010;"+
+        var COENArray = "COEN010:COEN010;"+
                         "COEN011:COEN011;"+
                         "COEN012:COEN012;"+
                         "COEN019:COEN019;"+
@@ -39,7 +39,7 @@ function init(){
                         "COEN179:COEN179;"+
                         "COEN180:COENELC;"+
                         "COEN188:NULL;"+
-			"COEN189:NULL;"+
+                        "COEN189:NULL;"+
                         "COEN191:NULL;"+
                         "COEN193:NULL;"+
                         "COEN194:COEN194,CIVE;"+
@@ -47,31 +47,31 @@ function init(){
                         "COEN196:COEN196;"+
                         "COEN199:NULL;";
 
-	var ENGRArray = "ENGR001:ENGR001;";
+        var ENGRArray = "ENGR001:ENGR001;";
 
-	var ELENArray = "ELEN050:ELEN050;"+
-			"ELEN115:COENELC;"+
-			"ELEN133:COENELC;"+
-			"ELEN134:COENELC;"+
-			"ELEN153:ELEN153;"+
+        var ELENArray = "ELEN050:ELEN050;"+
+                        "ELEN115:COENELC;"+
+                        "ELEN133:COENELC;"+
+                        "ELEN134:COENELC;"+
+                        "ELEN153:ELEN153;"+
                         "ELEN160:RTC3;";
-	
-	var ENGLArray = "ENGL001:CTW12;"+
+        
+        var ENGLArray = "ENGL001:CTW12;"+
                         "ENGL002:CTW12;"+
                         "ENGL039:DIV;"+
                         "ENGL181:ENGL181,ADVW;";
 
-	var MATHArray = "MATH011:MATH011;"+
-			"MATH012:MATH012;"+
-			"MATH013:MATH013;"+
-			"MATH014:MATH014;"+
+        var MATHArray = "MATH011:MATH011;"+
+                        "MATH012:MATH012;"+
+                        "MATH013:MATH013;"+
+                        "MATH014:MATH014;"+
                         "MATH022:AMTH106;"+
                         "MATH053:MATH053;"+
                         "MATH122:AMTH108;"+
                         "MATH166:MATH053;";
 
-	var PHYSArray = "PHYS031:PHYS031;"+
-			"PHYS032:PHYS032;"+
+        var PHYSArray = "PHYS031:PHYS031;"+
+                        "PHYS032:PHYS032;"+
                         "PHYS033:PHYS033;"+
                         "PHYS034:NSCI;";
 
@@ -142,16 +142,25 @@ function init(){
                         PSYCArray;
 
         localStorage.setItem("classList",allList);
+
+        // Check if other list and future list exist, and create if not
+        if(localStorage.getItem("otherList") == null){
+                localStorage.setItem("otherList","");
+        }
+        if(localStorage.getItem("futureList") == null){
+                localStorage.setItem("futureList","");
+        }
+
 }
 
 function makeMap(){
-	var classMap = new Map();
-	var classList = localStorage.getItem("classList");
+        var classMap = new Map();
+        var classList = localStorage.getItem("classList");
         classList = classList.split(';');
-	var i;
-	classList.forEach(function(value, index){
-		var elem = classList[index].split(':');
-		classMap.set(elem[0],elem[1]);
+        var i;
+        classList.forEach(function(value, index){
+                var elem = classList[index].split(':');
+                classMap.set(elem[0],elem[1]);
         });
         return classMap;
 }

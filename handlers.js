@@ -8,13 +8,15 @@
 //Mouse-over option to delete nodes
 //
 
+var clickFlag = true;
+/*
 function checkbox(id){
 	//updateArray(this.value);
 	if(id.style.color == "green")
 		id.style.color = "black";
 	else
 		id.style.color = "green";
-}
+}*/
 
 //Start with an empty list, with each click add a list element with the Dept and Number
 function dropdown(id){
@@ -23,15 +25,46 @@ function dropdown(id){
 	var text;
 	var node = document.createElement("LI");
 	var nodeId;
-
+	
+	// If the input is from the "Current Courses Section"
 	if(id.id == "otherButton"){
+		//Check that fields are filled out
 		if(document.getElementById('otherDropdown').value == 'null' || '' == document.getElementById('otherNumber').value){
 			document.getElementById("otherDropdown").focus();
 			return;
 		}
+
 		parent = document.getElementById("otherList");
 		text = document.createTextNode(document.getElementById("otherDropdown").value+' '+pad(document.getElementById("otherNumber").value));
 		nodeId = document.getElementById("otherDropdown").value+pad(document.getElementById("otherNumber").value);
+		
+		//Check for duplicates in current classes, if there is one, then return
+		for(var i = 0; i < document.getElementById("otherList").children.length; i++){
+        	if(nodeId == document.getElementById("otherList").children[i].id)
+            	return;
+        }
+
+        //Check for duplicates in future classes, if there is one, then move it up to current
+        for(var i = 0; i < document.getElementById("futureList").children.length; i++){
+            if(nodeId == document.getElementById("futureList").children[i].id){
+            	// Add element to "otherList"
+            	var old = localStorage.getItem('otherList');
+				old += nodeId+';';
+				localStorage.setItem('otherList', old);
+
+				// Remove element from "futureList"
+            	var list = localStorage.getItem('futureList');
+				var startLoc = list.search(nodeId);
+				var newList = list.substr(0,startLoc);
+				var secondList = list.substr(startLoc+8);
+				newList = newList + secondList;	
+				localStorage.setItem('futureList',newList);
+
+				fillLists();
+				return;
+            }
+        }
+
 		if(!inputCheck(document.getElementById("otherNumber").value)){
 			document.getElementById("otherNumber").focus();
 			return;
@@ -39,8 +72,9 @@ function dropdown(id){
 		checkAndUpdate('otherList', document.getElementById("otherDropdown").value+pad(document.getElementById("otherNumber").value));
 		document.getElementById('otherForm').reset();
 		document.getElementById('otherDropdown').focus();
-
+		node.setAttribute("ondblclick", "setFlag(false)");
 	}
+
 	else if(id.id == "futureButton"){
 		if(document.getElementById('futureDropdown').value == 'null' || '' == document.getElementById('futureNumber').value){
 			document.getElementById("futureDropdown").focus();
@@ -50,6 +84,20 @@ function dropdown(id){
 		text = document.createTextNode(document.getElementById("futureDropdown").value+' '+pad(document.getElementById("futureNumber").value));
 		nodeId = document.getElementById("futureDropdown").value+pad(document.getElementById("futureNumber").value);
 		node.setAttribute("class", "fCourse");
+
+
+		for(var j = 0; j < document.getElementById("futureList").children.length; j++){
+            if(nodeId == document.getElementById("futureList").children[j].id)
+                return;
+        }
+
+        for(var i = 0; i < document.getElementById("otherList").children.length; i++){
+            if(nodeId == document.getElementById("otherList").children[i].id){
+            	alert('Class already entered in Current Courses List');
+            	return;
+            }
+        }
+		
 		if(!inputCheck(document.getElementById("futureNumber").value)){
 			document.getElementById("futureNumber").focus();
 			return;
@@ -57,15 +105,7 @@ function dropdown(id){
 		checkAndUpdate('futureList', document.getElementById("futureDropdown").value+pad(document.getElementById("futureNumber").value));
 		document.getElementById('futureForm').reset();
 		document.getElementById('futureDropdown').focus();
-	}
-
-	for(var i = 0; i < document.getElementById("otherList").children.length; i++){
-		if(nodeId == document.getElementById("otherList").children[i].id)
-			return;
-	}
-	for(var j = 0; j < document.getElementById("futureList").children.length; j++){
-		if(nodeId == document.getElementById("futureList").children[j].id)
-			return;
+		node.setAttribute("ondblclick", "dblClickChild(this)");
 	}
 
 	node.appendChild(text);
@@ -78,6 +118,10 @@ function dropdown(id){
 	saveList(parent);
 }
 
+function setFlag () {
+	clickFlag = false;
+}
+
 function delHoverOn(id){
 	id.style.color = "red";
 }
@@ -87,18 +131,33 @@ function delHoverOff(id){
 }
 
 function clickChild(id){
-	if(typeof(Storage) !== 'undefined'){
-		var parent = id.parentElement;
-		var list = localStorage.getItem(parent.id);
-		var startLoc = list.search(id.id);
-		var newList = list.substr(0,startLoc);
-		var secondList = list.substr(startLoc+8);
-		newList = newList + secondList;	
-		localStorage.setItem(parent.id,newList);
-		checkAndDelete(id.id);
-		parent.removeChild(id);
-	}
+	var timer;
+	timer = setTimeout(function() {
+		console.log(clickFlag)
+		if(clickFlag == false){
+			clickFlag = true;
+			return;
+		}
+		if(typeof(Storage) !== 'undefined'){
+			var parent = id.parentElement;
+			var list = localStorage.getItem(parent.id);
+			var startLoc = list.search(id.id);
+			var newList = list.substr(0,startLoc);
+			var secondList = list.substr(startLoc+8);
+			newList = newList + secondList;	
+			localStorage.setItem(parent.id,newList);
+			fillLists();
+		}
+	}, 250);
 }
+
+function dblClickChild(id){
+	clickFlag = false;
+	var old = localStorage.getItem('otherList');
+	old += id.id+';';
+	localStorage.setItem('otherList', old);
+}
+
 function loadListenter(){
 	document.querySelector("#otherForm").addEventListener("keypress", function(e){
 		var key = e.which || e.keyCode;

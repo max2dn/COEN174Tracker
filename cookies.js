@@ -1,4 +1,5 @@
-//file: 	cookies.js
+
+//file:     cookies.js
 
 function saveList(parent){
     if (typeof(Storage) !== "undefined") {
@@ -20,8 +21,51 @@ function checkStorage(storageName){
     }
 }
 
+function clearLists(){
+    // Remove all elements from other list
+    var myNode = document.getElementById('otherList');
+    while (myNode.firstChild) {
+         myNode.removeChild(myNode.firstChild);
+    }
+
+    // Remove all elements from future list
+    myNode = document.getElementById('futureList');
+    while (myNode.firstChild) {
+        myNode.removeChild(myNode.firstChild);
+    }
+
+    // Remove all elements from enrichment list
+    myNode = document.getElementById('enrichList');
+    while (myNode.firstChild) {
+        myNode.removeChild(myNode.firstChild);
+    }
+
+    // Remove all elements from Core Requirement List
+    myNode = document.getElementById('coreField');
+    for(var i = 0; i < myNode.children.length; i++){
+        if(myNode.children[i].children[0] != null)
+            myNode.children[i].removeChild(myNode.children[i].children[0]);
+        myNode.children[i].style.color = 'black';
+    }
+
+    // Remove all elements from Major Requirements List
+    myNode = document.getElementById('COENField');
+    for(var i = 0; i < myNode.children.length; i++){
+        if(myNode.children[i].children[0] != null)
+            myNode.children[i].removeChild(myNode.children[i].children[0]);
+        myNode.children[i].style.color = 'black';
+    }
+
+    // Remove all elements from COEN Elective List
+    myNode = document.getElementById('nCOENELC');
+    while (myNode.firstChild) {
+        myNode.removeChild(myNode.firstChild);
+    }
+}
+
 function fillLists(){
     if(typeof(Storage) !== 'undefined'){
+        clearLists();
         init();
         var l1 = document.getElementById('otherList');
         var l2 = document.getElementById('futureList');
@@ -31,6 +75,7 @@ function fillLists(){
             node.setAttribute("onmouseenter", "delHoverOn(this)");
             node.setAttribute("onmouseleave", "delHoverOff(this)");
             node.setAttribute("onclick", "clickChild(this)");
+            node.setAttribute("ondblclick", "setFlag(false)");
             node.setAttribute("id", text[i]);     
             node.innerHTML = spacer(text[i]);
             l1.appendChild(node);
@@ -42,6 +87,7 @@ function fillLists(){
             node.setAttribute("onmouseenter", "delHoverOn(this)");
             node.setAttribute("onmouseleave", "delHoverOff(this)");
             node.setAttribute("onclick", "clickChild(this)");
+            node.setAttribute("ondblclick", "dblClickChild(this)");
             node.setAttribute("id", text[i]);     
             node.innerHTML = spacer(text[i]);
             l2.appendChild(node);
@@ -49,6 +95,7 @@ function fillLists(){
         }
     }
 }
+
 function checkAndUpdate(caller, key){
     if(typeof(Storage) !== 'undefined'){
         var classMap = makeMap();
@@ -62,12 +109,15 @@ function checkAndUpdate(caller, key){
                 reqs.push(str);
         }
         else{
-            console.log(caller);
             var onPage = document.getElementById('enrichList');
             var node = document.createElement("span");
             node.setAttribute("id", 'x'+key);
             node.innerHTML = "Contributed by "+spacer(key)+'<br>';
             onPage.appendChild(node);
+        if(caller == 'otherList')
+            document.getElementById('x'+key).style.color = 'green';
+        else
+            document.getElementById('x'+key).style.color  = 'blue';
             return;
         }
         if(classMap.get(key) == 'COENELC'){
@@ -75,9 +125,34 @@ function checkAndUpdate(caller, key){
             return;
         }
         checkAndUpdateExceptions(caller, key);
+
+    var reqCount = 0;
+    for(var i = 0; i < reqs.length; i++){
+        var onPage = document.getElementById('n'+reqs[i]);
+                if (onPage.childNodes.length >= 2){
+            reqCount++; 
+        }
+    }
+
         for(var i = 0; i < reqs.length; i++){
             var onPage = document.getElementById('n'+reqs[i]);
+            if (onPage.childNodes.length >= 2){
+            onPage = document.getElementById('enrichList');
             var node = document.createElement("span");
+                    node.setAttribute("id", 'x'+key);
+                    node.innerHTML = "Contributed by "+spacer(key)+'<br>';
+                    if(reqCount == 2 && reqs.length > 1 || reqs.length == 1){
+                onPage.appendChild(node);
+                if(caller == 'otherList')
+                                document.getElementById('x'+key).style.color = 'green';
+                        else
+                                document.getElementById('x'+key).style.color  = 'blue';
+                return;
+            }
+            continue;
+        }
+
+        var node = document.createElement("span");
             node.setAttribute("id", 'x'+key);
             node.innerHTML = " - Satisfied by "+spacer(key);
             onPage.appendChild(node);
@@ -88,6 +163,7 @@ function checkAndUpdate(caller, key){
         }
     }
 }
+
 function checkAndDelete(key){
     checkAndDeleteExceptions(key);
     var classMap = makeMap();
@@ -115,6 +191,10 @@ function checkAndDelete(key){
             onPage.style.color = 'black';
         }
     }
+
+    var onPage = document.getElementById('enrichList');
+    
+    fillLists();    
 }
 
 function checkAndUpdateExceptions(caller, key) {
@@ -123,17 +203,20 @@ function checkAndUpdateExceptions(caller, key) {
     var element;
     var green = false;
     var key2;
+    var color = "blue";
 
     function updatePage(element, key, key2, color) {
+        console.log(color);
         if (document.getElementById("n" + element).style.color == "green" || document.getElementById("n" + element).style.color == "blue")
             return;
         var onPage = document.getElementById("n" + element);
         var node = document.createElement("span");
         node.setAttribute("id", "x"+key+key2);
-        node.innerHTML = " - Satisfied by "+key+" "+key2;
+        node.innerHTML = " - Satisfied by "+key+" and "+key2;
         onPage.appendChild(node);
         onPage.style.color = color;
     }
+
     if (key == "ENGR001") {
         key2 = "COEN196";
         if (otherList != null && otherList.search("COEN196") != -1) {
@@ -162,17 +245,22 @@ function checkAndUpdateExceptions(caller, key) {
         if (otherList != null && otherList.search("ENGL181") != -1) {
             element = "ARTS";
             key2 = "ENGL181";
-            updatePage(element, key, key2, "green");
+            if(caller == 'otherList')
+                color = 'green';
+            updatePage(element, key, key2, color);
         }
         else if (futureList != null && futureList.search("ENGL181") != -1) {
             element = "ARTS";
             key2 = "ENGL181";
             updatePage(element, key, key2, "blue");
         }
+
         if (otherList != null && otherList.search("ENGR001") != -1) {
             element = "CIVE";
             key2 = "ENGR001";
-            updatePage(element, key, key2, "green");
+            if(caller == 'otherList')
+                color = 'green';
+            updatePage(element, key, key2, color);
         }
         else if (futureList != null && futureList.search("ENGR001") != -1) {
             element = "CIVE";
@@ -184,9 +272,8 @@ function checkAndUpdateExceptions(caller, key) {
     else
         return;
 
-    var color = "Blue";
     if (caller == "otherList" && green == true)
-        color = "Green";
+        color = "green";
     updatePage(element,key, key2, color);
 }
 
@@ -300,15 +387,15 @@ function checkCookie() {
 }
 
 function bakeCookie(parent, exdays){
-	var cValue = parent.children.toString();
-	setCookie(parent.id, cValue, exdays);
+    var cValue = parent.children.toString();
+    setCookie(parent.id, cValue, exdays);
 }
 
 function cutCookie(nodeId){
-	var list = getCookie(nodeId.parentElement);
-	var pos = list.search(nodeId.id);
-	list = list.substring(0, pos-1)+list.substring(pos+9);
-	setCookie(nodeId.parentElement, list, 30);
+    var list = getCookie(nodeId.parentElement);
+    var pos = list.search(nodeId.id);
+    list = list.substring(0, pos-1)+list.substring(pos+9);
+    setCookie(nodeId.parentElement, list, 30);
 }
 
 function eatCookie(){
