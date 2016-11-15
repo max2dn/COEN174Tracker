@@ -7,7 +7,7 @@
 		<script type="text/javascript" src="cookies.js"></script>
 		<script type="text/javascript" src="utilities.js"></script>
 		<script type="text/javascript" src="initialization.js"></script>
-		<style type="text/css" src="styles.css"></style>
+		<link rel="stylesheet" type="text/css" href="styles.css">
 	</head>
 	<body onload="fillLists()">
 
@@ -16,7 +16,10 @@
 			<h2> Search for a Class
 			<input type="search" name="searchBox" id="searchBox" placeholder="ETHN 101 Underwater Basket Weaving" autocomplete="autocomplete" pattern="[A-Z]{3}[A-Z]?[ ][0-9]{3}"><input type="button" id="searchButton" value="Search" onclick="clickSearch(this)">
 		</div>-->
-		<div class="rightcol" id="otherClasses">
+		<button onclick="clearAll()" id="clearAllButton">
+		Clear All
+		</button>
+		<div class="leftcol" id="otherClasses">
 			<h2> Current Courses </h2>
 			Use the dropdown to select classes. <br>
 			<form onsubmit="return false" id="otherForm">
@@ -50,7 +53,7 @@
 						<option value="MRKT"> MRKT </option>
 						<option value="CTW "> CTW </option>
 					</select>
-					Course Number (000-499)<input type="number" placeholder="011" min="001" step="1" max="499" id="otherNumber">
+					Course Number (000-499)<tr><input type="number" placeholder="011" min="001" step="1" max="499" id="otherNumber">
 					<input type="submit" name="addOther" id="otherButton" value="+" onclick="dropdown(this)">
 				</fieldset>
 			</form>
@@ -91,7 +94,7 @@
 						<option value="MRKT"> MRKT </option>
 						<option value="CTW "> CTW </option>
 					</select>
-					Course Number (000-499)<input type="number" placeholder="011" min="001" step="1" max="499" id="futureNumber">
+					Course Number (000-499)<tr><input type="number" placeholder="011" min="001" step="1" max="499" id="futureNumber">
 					<input type="submit" name="addOther" id="futureButton" value="+" onclick="dropdown(this)">
 				</fieldset>
 			</form>
@@ -162,7 +165,7 @@
 			</fieldset>
 		</div>
 	</body>
-	<footer>
+<!--	<footer>
 		<hr>
 		Webpage Created by: <br>
 		Maxen Chung <br>
@@ -171,4 +174,5 @@
 
 		Email all complaints to <email> complaints@nobody.cares </email>
 	</footer>
+-->
 </html>

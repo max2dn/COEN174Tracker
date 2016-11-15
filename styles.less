@@ -1,0 +1,95 @@
+/*styles.less 
+//Pre-Compiled file for creating 'styles.css' document using LESS
+//css language. Download 'simpLESS' or some other compiler to realize changes
+//from this document to the css document. Or, just edit the css.
+//https:wearekiss.com/simpless 
+//https:lesscss.org 
+//I say good day to you, sir.*/
+
+/*Variables*/
+@default:				0px;
+@bgColor:				#FFFFAA;
+@divFill: 				@bgColor;
+@ff:					arial, sans-serif;
+@h1Size:				24px;
+@h2Size:				@h1Size - 4;
+@h3Size:				@h1Size - 8;
+@bodyText:				14px;
+@listText:				12px;
+@boxWidth:				425px;
+@footWidth:				90%;
+
+*{
+	margin: 			@default;
+	padding: 			@default;
+	font-family:  			@ff;
+}
+
+.centerDiv{
+	position:			absolute;
+	left:				5%;
+	right:				5%;
+	width:				90%;
+
+}
+
+body{
+	.centerDiv;
+	background-color:		@bgColor;
+	min-width:  			1050px;
+	font-size:   			@bodyText;
+}
+
+fieldset{
+
+}
+
+.leftcol{
+	position:			relative;
+	margin: 			5px 0px;
+	float:				left;
+	width:	  			@boxWidth;
+	left: 				250px;
+}
+
+.rightcol{
+	position:			relative;
+	margin:			5px 0px;
+	float:				left;
+	width:	  			@boxWidth;
+	left: 				250px;
+	top:				20%;
+}
+
+.bottomForm{
+	position:			absolute;
+	margin:  			10px 0px;
+}
+
+footer{
+	position:			fixed;
+	bottom:  			0%;
+	width:				@footWidth;
+	text-align:  			center;
+}
+
+h1{
+	font-family:  			@ff;
+	font-size:  			@h1Size;
+}
+
+h2{
+	font-family:  			@ff;
+	font-size:  			@h2Size;
+}
+
+h3{
+	font-family:  			@ff;
+	font-size:  			@h3Size;
+}
+li{
+	margin-left:  			10%;
+}
+fieldset{
+	border: 				none;
+}
