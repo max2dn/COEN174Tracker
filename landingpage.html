@@ -9,8 +9,7 @@
 		<script type="text/javascript" src="initialization.js"></script>
 		<link rel="stylesheet" type="text/css" href="styles.css">
 	</head>
-	<body onload="fillLists()">
-
+	<body onload="fillLists()">	
 		<h1 onload="loadListener()">COEN Degree Tracker</h1>
 		<!--<div class="rightcol" id="searchBox">
 			<h2> Search for a Class
@@ -19,87 +18,89 @@
 		<button onclick="clearAll()" id="clearAllButton">
 		Clear All
 		</button>
-		<div class="leftcol" id="otherClasses">
-			<h2> Current Courses </h2>
-			Use the dropdown to select classes. <br>
-			<form onsubmit="return false" id="otherForm">
-				<fieldset>
-					Department
-					<select placeholder="Department" id="otherDropdown">
-						<option value="null" disabled selected value> ---- </option>
-						<option value="COEN"> COEN </option>
-						<option value="AMTH"> AMTH </option>
-						<option value="ELEN"> ELEN </option>
-						<option value="MATH"> MATH </option>
-						<option value="PHYS"> PHYS </option>
-						<option value="CHEM"> CHEM </option>
-						<option value="BIOL"> BIOL </option>
-						<option value="RSOC"> RSOC </option>
-						<option value="SCTR"> SCTR </option>
-						<option value="TESP"> TESP </option>
-						<option value="WGST"> WGST </option>
-						<option value="ENGL"> ENGL </option>
-						<option value="ENGR"> ENGR </option>
-						<option value="PHIL"> PHIL </option>
-						<option value="ETHN"> ETHN </option>
-						<option value="PSYC"> PSYC </option>
-						<option value="HIST"> HIST </option>
-						<option value="CLAS"> CLAS </option>
-						<option value="ART "> ART </option>
-						<option value="THTR"> THTR </option>
-						<option value="COMM"> COMM </option>
-						<option value="MUSC"> MUSC </option>
-						<option value="ACTG"> ACTG </option>
-						<option value="MRKT"> MRKT </option>
-						<option value="CTW "> CTW </option>
-					</select>
-					Course Number (000-499)<tr><input type="number" placeholder="011" min="001" step="1" max="499" id="otherNumber">
-					<input type="submit" name="addOther" id="otherButton" value="+" onclick="dropdown(this)">
-				</fieldset>
-			</form>
-			<ul id="otherList">
-			</ul> 
-		</div>
-		<div class="rightcol">
-			<h2> Future Courses </h2>
-			Use the dropdown to select classes. <br>
-			<form onsubmit="return false" id="futureForm">
-				<fieldset> 
-					Department
-					<select placeholder="Department" id="futureDropdown">
-						<option value="null" disabled selected value> ---- </option>
-						<option value="COEN"> COEN </option>
-						<option value="AMTH"> AMTH </option>
-						<option value="ELEN"> ELEN </option>
-						<option value="MATH"> MATH </option>
-						<option value="PHYS"> PHYS </option>
-						<option value="CHEM"> CHEM </option>
-						<option value="BIOL"> BIOL </option>
-						<option value="RSOC"> RSOC </option>
-						<option value="SCTR"> SCTR </option>
-						<option value="TESP"> TESP </option>
-						<option value="WGST"> WGST </option>
-						<option value="ENGL"> ENGL </option>
-						<option value="ENGR"> ENGR </option>
-						<option value="PHIL"> PHIL </option>
-						<option value="ETHN"> ETHN </option>
-						<option value="PSYC"> PSYC </option>
-						<option value="HIST"> HIST </option>
-						<option value="CLAS"> CLAS </option>
-						<option value="ART "> ART </option>
-						<option value="THTR"> THTR </option>
-						<option value="COMM"> COMM </option>
-						<option value="MUSC"> MUSC </option>
-						<option value="ACTG"> ACTG </option>
-						<option value="MRKT"> MRKT </option>
-						<option value="CTW "> CTW </option>
-					</select>
-					Course Number (000-499)<tr><input type="number" placeholder="011" min="001" step="1" max="499" id="futureNumber">
-					<input type="submit" name="addOther" id="futureButton" value="+" onclick="dropdown(this)">
-				</fieldset>
-			</form>
-			<ul id="futureList">
-			</ul>
+		<div id="listBox">
+			<div class="leftcol" id="otherClasses">
+				<h2> Current Courses </h2>
+				Use the dropdown to select classes. <br>
+				<form onsubmit="return false" id="otherForm">
+					<fieldset>
+						Department
+						<select placeholder="Department" id="otherDropdown">
+							<option value="null" disabled selected value> ---- </option>
+							<option value="COEN"> COEN </option>
+							<option value="AMTH"> AMTH </option>
+							<option value="ELEN"> ELEN </option>
+							<option value="MATH"> MATH </option>
+							<option value="PHYS"> PHYS </option>
+							<option value="CHEM"> CHEM </option>
+							<option value="BIOL"> BIOL </option>
+							<option value="RSOC"> RSOC </option>
+							<option value="SCTR"> SCTR </option>
+							<option value="TESP"> TESP </option>
+							<option value="WGST"> WGST </option>
+							<option value="ENGL"> ENGL </option>
+							<option value="ENGR"> ENGR </option>
+							<option value="PHIL"> PHIL </option>
+							<option value="ETHN"> ETHN </option>
+							<option value="PSYC"> PSYC </option>
+							<option value="HIST"> HIST </option>
+							<option value="CLAS"> CLAS </option>
+							<option value="ART "> ART </option>
+							<option value="THTR"> THTR </option>
+							<option value="COMM"> COMM </option>
+							<option value="MUSC"> MUSC </option>
+							<option value="ACTG"> ACTG </option>
+							<option value="MRKT"> MRKT </option>
+							<option value="CTW "> CTW </option>
+						</select>
+						Course Number (000-499)<tr><input type="number" placeholder="011" min="001" step="1" max="499" id="otherNumber">
+						<input type="submit" name="addOther" id="otherButton" value="+" onclick="dropdown(this)">
+					</fieldset>
+				</form>
+				<ul id="otherList">
+				</ul> 
+			</div>
+			<div class="rightcol">
+				<h2> Future Courses </h2>
+				Use the dropdown to select classes. <br>
+				<form onsubmit="return false" id="futureForm">
+					<fieldset> 
+						Department
+						<select placeholder="Department" id="futureDropdown">
+							<option value="null" disabled selected value> ---- </option>
+							<option value="COEN"> COEN </option>
+							<option value="AMTH"> AMTH </option>
+							<option value="ELEN"> ELEN </option>
+							<option value="MATH"> MATH </option>
+							<option value="PHYS"> PHYS </option>
+							<option value="CHEM"> CHEM </option>
+							<option value="BIOL"> BIOL </option>
+							<option value="RSOC"> RSOC </option>
+							<option value="SCTR"> SCTR </option>
+							<option value="TESP"> TESP </option>
+							<option value="WGST"> WGST </option>
+							<option value="ENGL"> ENGL </option>
+							<option value="ENGR"> ENGR </option>
+							<option value="PHIL"> PHIL </option>
+							<option value="ETHN"> ETHN </option>
+							<option value="PSYC"> PSYC </option>
+							<option value="HIST"> HIST </option>
+							<option value="CLAS"> CLAS </option>
+							<option value="ART "> ART </option>
+							<option value="THTR"> THTR </option>
+							<option value="COMM"> COMM </option>
+							<option value="MUSC"> MUSC </option>
+							<option value="ACTG"> ACTG </option>
+							<option value="MRKT"> MRKT </option>
+							<option value="CTW "> CTW </option>
+						</select>
+						Course Number (000-499)<tr><input type="number" placeholder="011" min="001" step="1" max="499" id="futureNumber">
+						<input type="submit" name="addOther" id="futureButton" value="+" onclick="dropdown(this)">
+					</fieldset>
+				</form>
+				<ul id="futureList">
+				</ul>
+			</div>
 		</div>
 		<div class="bottomForm" id="reqField">
 			<fieldset>

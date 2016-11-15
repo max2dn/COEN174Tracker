@@ -17,6 +17,15 @@ function checkbox(id){
 	else
 		id.style.color = "green";
 }*/
+//Clear All
+function clearAll(){
+	var clear = confirm("Are you sure you want to clear the form?");
+	if(!clear)
+		return;
+	clearLists();
+	localStorage.setItem('otherList',"");
+	localStorage.setItem('futureList',"");
+}
 
 //Start with an empty list, with each click add a list element with the Dept and Number
 function dropdown(id){

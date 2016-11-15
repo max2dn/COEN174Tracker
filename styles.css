@@ -1,3 +1,89 @@
 /*Variables*/
-*{margin:0;padding:0;font-family:arial,sans-serif}.centerDiv{position:absolute;left:5%;right:5%;width:90%}body{position:absolute;left:5%;right:5%;width:90%;background-color:#ffa;min-width:1050px;font-size:14px}.leftcol{position:relative;margin:5px 0;float:left;width:425px;left:250px}.rightcol{position:relative;margin:5px 0;float:left;width:425px;left:250px;top:20%}.bottomForm{position:absolute;margin:10px 0}footer{position:fixed;bottom:0;width:90%;text-align:center}h1{font-family:arial,sans-serif;font-size:24px}h2{font-family:arial,sans-serif;font-size:20px}h3{font-family:arial,sans-serif;font-size:16px}li{margin-left:10%}fieldset{border:0}
+/*styles.less 
+//Pre-Compiled file for creating 'styles.css' document using LESS
+//css language. Download 'simpLESS' or some other compiler to realize changes
+//from this document to the css document. Or, just edit the css.
+//https:wearekiss.com/simpless 
+//https:lesscss.org 
+//I say good day to you, sir.*/
+/*Variables*/
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: arial, sans-serif;
+}
+.centerDiv {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  width: 90%;
+}
+body {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  width: 90%;
+  z-index: 1;
+  background-color: #ee66ee GFF;
+  min-width: 1050px;
+  font-size: 14px;
+}
+.leftcol {
+  /*float:				right;
+	clear:				right;
+	margin: 			5px 0px;*/
+
+  width: 425px;
+  position: relative;
+}
+.rightcol {
+  /*float:				right;
+	margin:			5px 0px;*/
+
+  width: 425px;
+  position: relative;
+  overflow: auto;
+}
+.bottomForm {
+  position: absolute;
+  clear: all;
+  margin: 10px 0px;
+}
+footer {
+  position: fixed;
+  bottom: 0%;
+  width: 90%;
+  text-align: center;
+}
+h1 {
+  font-family: arial, sans-serif;
+  font-size: 24px;
+}
+h2 {
+  font-family: arial, sans-serif;
+  font-size: 20px;
+}
+h3 {
+  font-family: arial, sans-serif;
+  font-size: 16px;
+}
+li {
+  margin-left: 10%;
+}
+fieldset {
+  border: none;
+}
+#listBox {
+  background: #ee66ee GFF;
+  background-color: #ee66ee GFF;
+  z-index: 2;
+  position: fixed;
+  right: 0px;
+  top: 2%;
+  max-height: 90%;
+  overflow: auto;
+  border-left: 2px solid black;
+  padding: 10px;
+}
+
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
