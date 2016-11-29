@@ -4,19 +4,18 @@
 //from this document to the css document. Or, just edit the css.
 //https:wearekiss.com/simpless 
 //https:lesscss.org 
-//I say good day to you, sir.*/
 
-/*Variables*/
+Variables*/
 @default:				0px;
-@bgColor:				#E6EGFF;
+@bgColor:				#FFFFFF;
 @divFill: 				@bgColor;
 @ff:					arial, sans-serif;
-@h1Size:				24px;
+@h1Size:				32px;
 @h2Size:				@h1Size - 4;
 @h3Size:				@h1Size - 8;
-@bodyText:				14px;
-@listText:				12px;
-@boxWidth:				425px;
+@bodyText:				20px;
+@listText:				16px;
+@boxWidth:				550px;
 @footWidth:				90%;
 @colTop:				20%;
 
@@ -24,6 +23,7 @@
 	margin: 			@default;
 	padding: 			@default;
 	font-family:  			@ff;
+	cursor:				default;
 }
 
 .centerDiv{
@@ -34,28 +34,32 @@
 
 }
 
+.gradient{
+	background: #B30737; 
+  	background: -webkit-linear-gradient(left, white, #B30737 5%, #B30737 95%, white);
+  	background: -o-linear-gradient(right, white, #B30737 5%, #B30737 95%, white);
+  	background: -moz-linear-gradient(right, white, #B30737 5%, #B30737 95%, white);
+  	background: linear-gradient(to right, white, #B30737 5%, #B30737 95%, white);
+}
+
 body{
 	.centerDiv;
+	top:				10px;
 	z-index:  			1;
 	background-color:		@bgColor;
 	min-width:  			1050px;
 	font-size:   			@bodyText;
+	max-zoom: 			150%;
 }
 
 .leftcol{
-	/*float:				right;
-	clear:				right;
-	margin: 			5px 0px;*/
-	width:	  			@boxWidth;
+	width:	  			auto;
 	position:  			relative;
 }
 
 .rightcol{
-	/*float:				right;
-	margin:			5px 0px;*/
-	width:	  			@boxWidth;
+	width:	  			auto;
 	position:  			relative;
-	overflow:			auto;
 }
 
 .bottomForm{
@@ -64,29 +68,33 @@ body{
 	margin:  			10px 0px;
 }
 
-footer{
-	position:			fixed;
-	bottom:  			0%;
-	width:				@footWidth;
-	text-align:  			center;
-}
-
 h1{
+	position:  			relative;
 	font-family:  			@ff;
 	font-size:  			@h1Size;
+	padding:			4px 0px 4px 0px;
+	text-decoration:		underline;
 }
 
 h2{
+	position:  			relative;
 	font-family:  			@ff;
 	font-size:  			@h2Size;
+	padding:			4px 0px 4px 0px;
+	text-decoration:		underline;
 }
 
 h3{
+	position:  			relative;
 	font-family:  			@ff;
 	font-size:  			@h3Size;
+	padding:			4px 0px 4px 0px;
+	text-decoration:		underline;
 }
 li{
 	margin-left:  			10%;
+	margin-top:			2px;
+	cursor:				pointer;
 }
 fieldset{
 	border: 			none;
@@ -103,4 +111,29 @@ fieldset{
 	overflow:			auto;
 	border-left:			2px solid black;
 	padding:  			10px;
+}
+
+.banner {
+	padding:			5px;
+	position: 			relative;
+	width: 				55%;
+	max-height:			75px;
+	.gradient;
+	font-family:			'Lucida', serif;
+	font-size:			@h1Size;
+	color:				#FFFFFF;
+	text-decoration:  		none;
+}
+
+.footer {
+	padding-left:  			30px;
+	width:				100%;
+}
+
+#otherButton, #futureButton, button, select {
+	cursor:				pointer;
+}
+
+#otherNumber, #futureNumber {
+	cursor:				text;
 }

@@ -8,13 +8,15 @@
 		<script type="text/javascript" src="utilities.js"></script>
 		<script type="text/javascript" src="initialization.js"></script>
 		<link rel="stylesheet" type="text/css" href="styles.css">
+		<link rel="icon" href="favicon.ico">
 	</head>
-	<body onload="fillLists()">	
+	<body onload="fillLists()">
+		<div class="banner">
+			<img src="scu_engineering.jpg" alt="SCU Engineering" width="60px" style="float: left; padding: 0px 5px 0px 20px;"></img>
+			Santa Clara University <br>
+			The Jesuit University in Silicon Valley <br>
+		</div>
 		<h1 onload="loadListener()">COEN Degree Tracker</h1>
-		<!--<div class="rightcol" id="searchBox">
-			<h2> Search for a Class
-			<input type="search" name="searchBox" id="searchBox" placeholder="ETHN 101 Underwater Basket Weaving" autocomplete="autocomplete" pattern="[A-Z]{3}[A-Z]?[ ][0-9]{3}"><input type="button" id="searchButton" value="Search" onclick="clickSearch(this)">
-		</div>-->
 		<button onclick="clearAll()" id="clearAllButton">
 		Clear All
 		</button>
@@ -53,8 +55,8 @@
 							<option value="MRKT"> MRKT </option>
 							<option value="CTW "> CTW </option>
 						</select>
-						Course Number (000-499)<tr><input type="number" placeholder="011" min="001" step="1" max="499" id="otherNumber">
-						<input type="submit" name="addOther" id="otherButton" value="+" onclick="dropdown(this)">
+						Course Number (000-499) <input type="number" placeholder="011" min="001" step="1" max="499" id="otherNumber">
+						<input type="submit" name="addOther" id="otherButton" value=" + " onclick="dropdown(this)">
 					</fieldset>
 				</form>
 				<ul id="otherList">
@@ -94,8 +96,8 @@
 							<option value="MRKT"> MRKT </option>
 							<option value="CTW "> CTW </option>
 						</select>
-						Course Number (000-499)<tr><input type="number" placeholder="011" min="001" step="1" max="499" id="futureNumber">
-						<input type="submit" name="addOther" id="futureButton" value="+" onclick="dropdown(this)">
+						Course Number (000-499) <input type="number" placeholder="011" min="001" step="1" max="499" id="futureNumber">
+						<input type="submit" name="addOther" id="futureButton" value=" + " onclick="dropdown(this)">
 					</fieldset>
 				</form>
 				<ul id="futureList">
@@ -138,7 +140,7 @@
 					<span id="nAMTH106"> AMTH 106 </span> <br>
 					<span id="nAMTH108"> AMTH 108 </span> <br>
 				</div>
-				<h4 id='COENELCHeader'> COEN Electives </h4>
+				<h4 id='COENELCHeader' style="text-decoration: underline;"> COEN Electives </h4>
 				<ul id='nCOENELC'>
 				</ul>
 				<h3>University Core Requirements</h3>
@@ -163,17 +165,17 @@
 					<div id="enrichList">
 					</div>
 				</div>
+				<hr style="margin-top: 30px;">
+				<div class="footer">
+					Webpage Created By: <br>
+					<span style="padding: 0px; margin: 0px; font-size: 12px;">
+						Maxen Chung <br> 
+						Brett Harrison <br> 
+						Brian Pingel <br>
+						Questions? Contact us at complaints@engr.scu.edu
+					</span>
+				</div>
 			</fieldset>
 		</div>
 	</body>
-<!--	<footer>
-		<hr>
-		Webpage Created by: <br>
-		Maxen Chung <br>
-		Brett Harrison <br>
-		Brian Pingel <br>
-
-		Email all complaints to <email> complaints@nobody.cares </email>
-	</footer>
--->
 </html>
