@@ -1,31 +1,13 @@
 
 //file:     cookies.js
+// functions for handling updating the local storage, along with functions to check requirements and update the page
 
-function saveList(parent){
-    if (typeof(Storage) !== "undefined") {
-        var i;
-        value = '';
-        for(i = 0; i < parent.children.length; i++)
-            value += parent.children[i].id+';';
-        localStorage.setItem(parent.id, value);
-    } else {
-        // Sorry! No Web Storage support..
-    }
-}
-
-function checkStorage(storageName){
-    if(typeof(Storage) !== 'undefined'){
-        var item = localStorage.storageName;
-        if(item)
-            return item;
-    }
-}
-
+//Clears all the added nodes on the page
 function clearLists(){
     // Remove all elements from other list
     var myNode = document.getElementById('otherList');
     while (myNode.firstChild) {
-         myNode.removeChild(myNode.firstChild);
+        myNode.removeChild(myNode.firstChild);
     }
 
     // Remove all elements from future list
@@ -63,6 +45,7 @@ function clearLists(){
     }
 }
 
+//Gets the lists from storage and fills out the page
 function fillLists(){
     if(typeof(Storage) !== 'undefined'){
         clearLists();
@@ -70,17 +53,21 @@ function fillLists(){
         var l1 = document.getElementById('otherList');
         var l2 = document.getElementById('futureList');
         var text = localStorage.getItem('otherList').split(';');
+
+        //Fill the current courses section
         for(var i = 0; i < text.length - 1; i++){
             var node = document.createElement("LI");
             node.setAttribute("onmouseenter", "delHoverOn(this)");
             node.setAttribute("onmouseleave", "delHoverOff(this)");
             node.setAttribute("onclick", "clickChild(this)");
             node.setAttribute("ondblclick", "setFlag(false)");
-            node.setAttribute("id", text[i]);     
+            node.setAttribute("id", text[i]);
             node.innerHTML = spacer(text[i]);
             l1.appendChild(node);
             checkAndUpdate('otherList', text[i]);
         }
+
+        //Fill the future courses section
         text = localStorage.getItem('futureList').split(';');
         for(var i = 0; i < text.length - 1; i++){
             var node = document.createElement("LI");
@@ -88,7 +75,7 @@ function fillLists(){
             node.setAttribute("onmouseleave", "delHoverOff(this)");
             node.setAttribute("onclick", "clickChild(this)");
             node.setAttribute("ondblclick", "dblClickChild(this)");
-            node.setAttribute("id", text[i]);     
+            node.setAttribute("id", text[i]);
             node.innerHTML = spacer(text[i]);
             l2.appendChild(node);
             checkAndUpdate('futureList', text[i]);
@@ -96,11 +83,15 @@ function fillLists(){
     }
 }
 
+//Determine what requirement "key" fulfills and update the page accordingly
 function checkAndUpdate(caller, key){
     if(typeof(Storage) !== 'undefined'){
+
+        //Check requirement
         var classMap = makeMap();
         var reqs = [];
         var str ='';
+        //if the class fulfills requirements, add the reqs to the array
         if(classMap.has(key)){
             str = classMap.get(key);
             if(str.search(','))
@@ -108,51 +99,63 @@ function checkAndUpdate(caller, key){
             else
                 reqs.push(str);
         }
+
+        //if the class does not fulfill requirements, add the class to education enrichment
         else{
             var onPage = document.getElementById('enrichList');
-            var node = document.createElement("span");
+            var node = document.createElement("LI");
             node.setAttribute("id", 'x'+key);
-            node.innerHTML = "Contributed by "+spacer(key)+'<br>';
+            node.innerHTML = key.substring(0,4) + " " + key.substring(4);
             onPage.appendChild(node);
-        if(caller == 'otherList')
-            document.getElementById('x'+key).style.color = 'green';
-        else
-            document.getElementById('x'+key).style.color  = 'blue';
+            if(caller == 'otherList')
+                document.getElementById('x'+key).style.color = 'green';
+            else
+                document.getElementById('x'+key).style.color  = 'blue';
             return;
         }
+
+        //if the class is a COEN elective, call the elective handler
         if(classMap.get(key) == 'COENELC'){
             elcHandler(caller, key);
             return;
         }
+
+        //Check if the class is a special case
         checkAndUpdateExceptions(caller, key);
 
-    var reqCount = 0;
-    for(var i = 0; i < reqs.length; i++){
-        var onPage = document.getElementById('n'+reqs[i]);
-                if (onPage.childNodes.length >= 2){
-            reqCount++; 
-        }
-    }
-
+        //Determine how many requirements the class fulfills that have already been fulfilled
+        var reqCount = 0;
         for(var i = 0; i < reqs.length; i++){
             var onPage = document.getElementById('n'+reqs[i]);
             if (onPage.childNodes.length >= 2){
-            onPage = document.getElementById('enrichList');
-            var node = document.createElement("span");
-                    node.setAttribute("id", 'x'+key);
-                    node.innerHTML = "Contributed by "+spacer(key)+'<br>';
-                    if(reqCount == 2 && reqs.length > 1 || reqs.length == 1){
-                onPage.appendChild(node);
-                if(caller == 'otherList')
-                                document.getElementById('x'+key).style.color = 'green';
-                        else
-                                document.getElementById('x'+key).style.color  = 'blue';
-                return;
+                reqCount++;
             }
-            continue;
         }
 
-        var node = document.createElement("span");
+        //For each requirement, add to the class to the requirement it fulfills
+        for(var i = 0; i < reqs.length; i++){
+            var onPage = document.getElementById('n'+reqs[i]);
+
+            //if the requirement is already fulfilled
+            if (onPage.childNodes.length >= 2){
+                onPage = document.getElementById('enrichList');
+                var node = document.createElement("span");
+                node.setAttribute("id", 'x'+key);
+                node.innerHTML = "Contributed by "+spacer(key)+'<br>';
+                //if the class fulfills only one requirement, or it is a double dip but both classes have been fulfilled
+                if(reqCount == 2 && reqs.length > 1 || reqs.length == 1){
+                    onPage.appendChild(node);
+                    if(caller == 'otherList')
+                        document.getElementById('x'+key).style.color = 'green';
+                    else
+                        document.getElementById('x'+key).style.color  = 'blue';
+                    return;
+                }
+                continue;
+            }
+
+            //add the class to the requirement it fulfills
+            var node = document.createElement("span");
             node.setAttribute("id", 'x'+key);
             node.innerHTML = " - Satisfied by "+spacer(key);
             onPage.appendChild(node);
@@ -164,6 +167,7 @@ function checkAndUpdate(caller, key){
     }
 }
 
+//Find the class specified by key and remove it from the page
 function checkAndDelete(key){
     checkAndDeleteExceptions(key);
     var classMap = makeMap();
@@ -191,22 +195,21 @@ function checkAndDelete(key){
             onPage.style.color = 'black';
         }
     }
-
-    var onPage = document.getElementById('enrichList');
-    
-    fillLists();    
+    fillLists();
 }
 
+//Checks for STS,Arts,and Civic Engagement
 function checkAndUpdateExceptions(caller, key) {
     var otherList = localStorage.getItem("otherList");
     var futureList = localStorage.getItem("futureList");
     var element;
+    var element2;
     var green = false;
     var key2;
     var color = "blue";
 
+    //Add the element onto the page, stating that it is satisfied by key and key2
     function updatePage(element, key, key2, color) {
-        console.log(color);
         if (document.getElementById("n" + element).style.color == "green" || document.getElementById("n" + element).style.color == "blue")
             return;
         var onPage = document.getElementById("n" + element);
@@ -217,6 +220,7 @@ function checkAndUpdateExceptions(caller, key) {
         onPage.style.color = color;
     }
 
+    //Check if the class is one of the exceptions, and if it is, check if the other class has also been taken
     if (key == "ENGR001") {
         key2 = "COEN196";
         if (otherList != null && otherList.search("COEN196") != -1) {
@@ -234,9 +238,17 @@ function checkAndUpdateExceptions(caller, key) {
         if (otherList != null && otherList.search("COEN196") != -1) {
             green = true;
             element = "ARTS";
+            element2 = "STNS";
+            if(caller == 'otherList')
+                color = 'green';
+            updatePage(element, key, key2, color);
+            updatePage(element2, key, key2, color);
         }
         else if (futureList != null && futureList.search("COEN196") != -1) {
             element = "ARTS";
+            element2 = "STNS";
+            updatePage(element, key, key2, color);
+            updatePage(element2, key, key2, color);
         }
         else
             return;
@@ -244,15 +256,19 @@ function checkAndUpdateExceptions(caller, key) {
     else if (key == "COEN196") {
         if (otherList != null && otherList.search("ENGL181") != -1) {
             element = "ARTS";
+            element2 = "STNS";
             key2 = "ENGL181";
             if(caller == 'otherList')
                 color = 'green';
             updatePage(element, key, key2, color);
+            updatePage(element2, key, key2, color);
         }
         else if (futureList != null && futureList.search("ENGL181") != -1) {
             element = "ARTS";
+            element2 = "STNS";
             key2 = "ENGL181";
             updatePage(element, key, key2, "blue");
+            updatePage(element2, key, key2, "blue");
         }
 
         if (otherList != null && otherList.search("ENGR001") != -1) {
@@ -271,70 +287,44 @@ function checkAndUpdateExceptions(caller, key) {
     }
     else
         return;
-
     if (caller == "otherList" && green == true)
         color = "green";
     updatePage(element,key, key2, color);
 }
 
+//Delete exceptional classes ENGL181,ENGR001,or COEN196, which combine to fulfill a requirement
 function checkAndDeleteExceptions(key){
-
-        if(key == "ENGL181"){
-
-                var onPage = document.getElementById("nARTS");
-
-                if(onPage.childNodes.length > 1 && onPage.childNodes[1].innerHTML.search("ENGL181") != -1){
-
-                        onPage.removeChild(onPage.childNodes[1]);
-
-                        onPage.style.color = 'black';
-
-                }   
-
-        } else if (key == "ENGR001"){
-
-                var onPage = document.getElementById("nCIVE");
-
-                if(onPage.childNodes.length > 1 && onPage.childNodes[1].innerHTML.search("ENGR001") != -1){
-
-                        onPage.removeChild(onPage.childNodes[1]);
-
-                        onPage.style.color = 'black';
-
-                }   
-
-        } else if (key == "COEN196"){
-
-                var onPage = document.getElementById("nARTS");
-
-                if(onPage.childNodes.length > 1 && onPage.childNodes[1].innerHTML.search("COEN196") != -1){
-
-                        onPage.removeChild(onPage.childNodes[1]);
-
-                        onPage.style.color = 'black';
-
-                }   
-
-
-
-                onPage = document.getElementById("nCIVE");
-
-                if(onPage.childNodes.length > 1 && onPage.childNodes[1].innerHTML.search("COEN196") != -1){
-
-                        onPage.removeChild(onPage.childNodes[1]);
-
-                        onPage.style.color = 'black';
-
-                }   
-
-        }   
-
+    if(key == "ENGL181"){
+        var onPage = document.getElementById("nARTS");
+        if(onPage.childNodes.length > 1 && onPage.childNodes[1].innerHTML.search("ENGL181") != -1){
+            onPage.removeChild(onPage.childNodes[1]);
+            onPage.style.color = 'black';
+        }
+    } else if (key == "ENGR001"){
+        var onPage = document.getElementById("nCIVE");
+        if(onPage.childNodes.length > 1 && onPage.childNodes[1].innerHTML.search("ENGR001") != -1){
+            onPage.removeChild(onPage.childNodes[1]);
+            onPage.style.color = 'black';
+        }
+    } else if (key == "COEN196"){
+        var onPage = document.getElementById("nARTS");
+        if(onPage.childNodes.length > 1 && onPage.childNodes[1].innerHTML.search("COEN196") != -1){
+            onPage.removeChild(onPage.childNodes[1]);
+            onPage.style.color = 'black';
+        }
+        onPage = document.getElementById("nCIVE");
+        if(onPage.childNodes.length > 1 && onPage.childNodes[1].innerHTML.search("COEN196") != -1){
+            onPage.removeChild(onPage.childNodes[1]);
+            onPage.style.color = 'black';
+        }
+    }
 }
 
+//Handler for adding COEN Electives
 function elcHandler(caller, key){
     var node = document.createElement("LI");
     node.setAttribute('id', 'x'+key);
-    node.innerHTML = key;
+    node.innerHTML = key.substring(0,4) + " " + key.substring(4);
     document.getElementById('nCOENELC').appendChild(node);
     if(document.getElementById('nCOENELC').childNodes.length >= 4){
         document.getElementById('COENELCHeader').style.color = 'green';
@@ -345,80 +335,11 @@ function elcHandler(caller, key){
         node.style.color = 'blue';
 }
 
+
+//Handler for deleting COEN Electives
 function elcDeleteHandler(key){
     var node = document.getElementById('x'+key);
     node.parentElement.removeChild(node);
     if(document.getElementById('nCOENELC').childNodes.length < 4)
         document.getElementById('COENELCHeader').style.color = 'black';
 }
-/*\
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length,c.length);
-        }
-    }
-    return "";
-}
-
-function checkCookie() {
-    var username=getCookie("username");
-    if (username!="") {
-        alert("Welcome again " + username);
-    } else {
-        username = prompt("Please enter your name:", "");
-        if (username != "" && username != null) {
-            setCookie("username", username, 365);
-        }
-    }
-}
-
-function bakeCookie(parent, exdays){
-    var cValue = parent.children.toString();
-    setCookie(parent.id, cValue, exdays);
-}
-
-function cutCookie(nodeId){
-    var list = getCookie(nodeId.parentElement);
-    var pos = list.search(nodeId.id);
-    list = list.substring(0, pos-1)+list.substring(pos+9);
-    setCookie(nodeId.parentElement, list, 30);
-}
-
-function eatCookie(){
-    var otherCookie = getCookie("otherList");
-    var futureCookie = getCookie("futureList");
-
-    var otherList = getElementById('otherList');
-    var futureList = getElementById('futureList');
-
-    var node;
-    node.setAttribute("onmouseenter", "delHoverOn(this)");
-    node.setAttribute("onmouseleave", "delHoverOff(this)");
-    node.setAttribute("onclick", "clickChild(this)");
-
-    var i, j;
-
-    for(i = 0; i <= otherCookie.length - 8; i+=9){
-        node.appendChild(otherCookie.substring(i, i + 7));
-        otherList.appendChild(node);
-    }
-    for(j = 0; j <= futureCookie.length - 8; i+=9){
-        node.appendChild(futureCookie.substring(i, i + 7));
-        futureList.appendChild(node);
-    }
-}
-\*/

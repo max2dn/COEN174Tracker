@@ -20,84 +20,94 @@
 		<button onclick="clearAll()" id="clearAllButton">
 		Clear All
 		</button>
+		<button onclick="window.print()" id = "printButton">
+		Print
+		</button>
 		<div id="listBox">
 			<div class="leftcol" id="otherClasses">
 				<h2> Current Courses </h2>
-				Use the dropdown to select classes. <br>
+				Use the dropdown to select classes.<br>
+				Leave Off Trailing Letters (eg. ENGL 1A = ENGL 1)<br>
+				Click Class to Remove <br><br>
 				<form onsubmit="return false" id="otherForm">
 					<fieldset>
 						Department
 						<select placeholder="Department" id="otherDropdown">
 							<option value="null" disabled selected value> ---- </option>
 							<option value="COEN"> COEN </option>
+							<option value="ACTG"> ACTG </option>
+							<option value="ART "> ART </option>
 							<option value="AMTH"> AMTH </option>
-							<option value="ELEN"> ELEN </option>
-							<option value="MATH"> MATH </option>
-							<option value="PHYS"> PHYS </option>
-							<option value="CHEM"> CHEM </option>
 							<option value="BIOL"> BIOL </option>
+							<option value="CHEM"> CHEM </option>
+							<option value="CLAS"> CLAS </option>
+							<option value="COMM"> COMM </option>
+							<option value="CTW "> CTW </option>
+							<option value="ELEN"> ELEN </option>
+							<option value="ENGL"> ENGL </option>
+							<option value="ENGR"> ENGR </option>
+							<option value="ETHN"> ETHN </option>
+							<option value="HIST"> HIST </option>
+							<option value="MATH"> MATH </option>
+							<option value="MRKT"> MRKT </option>
+							<option value="MUSC"> MUSC </option>
+							<option value="PHIL"> PHIL </option>
+							<option value="PHYS"> PHYS </option>
+							<option value="POLI"> POLI </option>
+							<option value="PSYC"> PSYC </option>
 							<option value="RSOC"> RSOC </option>
 							<option value="SCTR"> SCTR </option>
 							<option value="TESP"> TESP </option>
-							<option value="WGST"> WGST </option>
-							<option value="ENGL"> ENGL </option>
-							<option value="ENGR"> ENGR </option>
-							<option value="PHIL"> PHIL </option>
-							<option value="ETHN"> ETHN </option>
-							<option value="PSYC"> PSYC </option>
-							<option value="HIST"> HIST </option>
-							<option value="CLAS"> CLAS </option>
-							<option value="ART "> ART </option>
 							<option value="THTR"> THTR </option>
-							<option value="COMM"> COMM </option>
-							<option value="MUSC"> MUSC </option>
-							<option value="ACTG"> ACTG </option>
-							<option value="MRKT"> MRKT </option>
-							<option value="CTW "> CTW </option>
+							<option value="WGST"> WGST </option>
 						</select>
-						Course Number (000-499) <input type="number" placeholder="011" min="001" step="1" max="499" id="otherNumber">
-						<input type="submit" name="addOther" id="otherButton" value=" + " onclick="dropdown(this)">
+						Course Number (000-499)<tr><input type="number" placeholder="011" min="001" step="1" max="499" id="otherNumber">
+						<input type="submit" name="addOther" id="otherButton" value="+" onclick="dropdown(this)">
 					</fieldset>
 				</form>
 				<ul id="otherList">
 				</ul> 
-			</div>
+			</div><br><br>
 			<div class="rightcol">
 				<h2> Future Courses </h2>
-				Use the dropdown to select classes. <br>
+				Use the dropdown to select classes.<br>
+                                Leave Off Trailing Letters (eg. ENGL 1A = ENGL 1)<br>
+                                Click Class to Remove <br>
+				Double Click Class to Move to Current List <br><br>
 				<form onsubmit="return false" id="futureForm">
 					<fieldset> 
 						Department
 						<select placeholder="Department" id="futureDropdown">
 							<option value="null" disabled selected value> ---- </option>
 							<option value="COEN"> COEN </option>
+							<option value="ACTG"> ACTG </option>
+							<option value="ART "> ART </option>
 							<option value="AMTH"> AMTH </option>
-							<option value="ELEN"> ELEN </option>
-							<option value="MATH"> MATH </option>
-							<option value="PHYS"> PHYS </option>
-							<option value="CHEM"> CHEM </option>
 							<option value="BIOL"> BIOL </option>
+							<option value="CHEM"> CHEM </option>
+							<option value="CLAS"> CLAS </option>
+							<option value="COMM"> COMM </option>
+							<option value="CTW "> CTW </option>
+							<option value="ELEN"> ELEN </option>
+							<option value="ENGL"> ENGL </option>
+							<option value="ENGR"> ENGR </option>
+							<option value="ETHN"> ETHN </option>
+							<option value="HIST"> HIST </option>
+							<option value="MATH"> MATH </option>
+							<option value="MRKT"> MRKT </option>
+							<option value="MUSC"> MUSC </option>
+							<option value="PHIL"> PHIL </option>
+							<option value="PHYS"> PHYS </option>
+							<option value="POLI"> POLI </option>
+							<option value="PSYC"> PSYC </option>
 							<option value="RSOC"> RSOC </option>
 							<option value="SCTR"> SCTR </option>
 							<option value="TESP"> TESP </option>
-							<option value="WGST"> WGST </option>
-							<option value="ENGL"> ENGL </option>
-							<option value="ENGR"> ENGR </option>
-							<option value="PHIL"> PHIL </option>
-							<option value="ETHN"> ETHN </option>
-							<option value="PSYC"> PSYC </option>
-							<option value="HIST"> HIST </option>
-							<option value="CLAS"> CLAS </option>
-							<option value="ART "> ART </option>
 							<option value="THTR"> THTR </option>
-							<option value="COMM"> COMM </option>
-							<option value="MUSC"> MUSC </option>
-							<option value="ACTG"> ACTG </option>
-							<option value="MRKT"> MRKT </option>
-							<option value="CTW "> CTW </option>
+							<option value="WGST"> WGST </option>
 						</select>
-						Course Number (000-499) <input type="number" placeholder="011" min="001" step="1" max="499" id="futureNumber">
-						<input type="submit" name="addOther" id="futureButton" value=" + " onclick="dropdown(this)">
+						Course Number (000-499)<tr><input type="number" placeholder="011" min="001" step="1" max="499" id="futureNumber">
+						<input type="submit" name="addOther" id="futureButton" value="+" onclick="dropdown(this)">
 					</fieldset>
 				</form>
 				<ul id="futureList">
@@ -139,10 +149,13 @@
 					<span id="nPHYS033"> PHYS 033 </span> <br>
 					<span id="nAMTH106"> AMTH 106 </span> <br>
 					<span id="nAMTH108"> AMTH 108 </span> <br>
-				</div>
-				<h4 id='COENELCHeader' style="text-decoration: underline;"> COEN Electives </h4>
+				</div><br>
+
+				<h3 id='COENELCHeader'> COEN Electives </h3>
+				<h5>(Note: Three COEN elective classes fulfill requirement)</h5>
 				<ul id='nCOENELC'>
-				</ul>
+				</ul><br>
+
 				<h3>University Core Requirements</h3>
 				<div id="coreField">
 					<span id="nRTC1">RTC I</span> </br>
@@ -155,25 +168,18 @@
 					<span id="nCIVE">Civic Engagement</span> </br>
 					<span id="nDIV">Diversity</span> </br>
 					<span id="nARTS">Arts</span> </br>
+					<span id="nSTNS">Science, Technology, and Society</span></br>
 					<span id="nNSCI">Natural Science</span> </br>
 					<span id="nSSCI">Social Science</span> </br>
 					<span id="nELSJ">ELSJ</span> </br>
 					<span id="nADVW">Advanced Writing</span> </br>
-				</div>
-				<h3>Educational Enrichment</h3>
+				</div><br>
+
+				<h3>Other Courses</h3>
+				<h5>(Note: These classes could be used toward the educational enrichment requirment)</h5>
 				<div id="enrichmentField">
-					<div id="enrichList">
-					</div>
-				</div>
-				<hr style="margin-top: 30px;">
-				<div class="footer">
-					Webpage Created By: <br>
-					<span style="padding: 0px; margin: 0px; font-size: 12px;">
-						Maxen Chung <br> 
-						Brett Harrison <br> 
-						Brian Pingel <br>
-						Questions? Contact us at complaints@engr.scu.edu
-					</span>
+					<ul id="enrichList">
+					</ul>
 				</div>
 			</fieldset>
 		</div>
