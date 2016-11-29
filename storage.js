@@ -1,5 +1,5 @@
 
-//file:     cookies.js
+//file:     storage.js
 // functions for handling updating the local storage, along with functions to check requirements and update the page
 
 //Clears all the added nodes on the page
