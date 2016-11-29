@@ -4,7 +4,6 @@
 //from this document to the css document. Or, just edit the css.
 //https:wearekiss.com/simpless 
 //https:lesscss.org 
-
 Variables*/
 @default:				0px;
 @bgColor:				#FFFFFF;
@@ -116,7 +115,7 @@ fieldset{
 .banner {
 	padding:			5px;
 	position: 			relative;
-	width: 				55%;
+	width: 				65%;
 	max-height:			75px;
 	.gradient;
 	font-family:			'Lucida', serif;
@@ -136,4 +135,21 @@ fieldset{
 
 #otherNumber, #futureNumber {
 	cursor:				text;
+}
+
+#enrichList li{
+	cursor:				default;
+}
+@media print {
+  	body * {
+    		visibility: hidden;
+  	}
+  	.bottomForm, .bottomForm * {
+    		visibility: visible;
+  	}
+  	.bottomForm{
+		position: absolute;
+		left: 0;
+		top: 0;
+	 }
 }

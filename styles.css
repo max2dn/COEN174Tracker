@@ -1,1 +1,138 @@
-*{margin:0;padding:0;font-family:arial,sans-serif;cursor:default}.centerDiv{position:absolute;left:5%;right:5%;width:90%}.gradient{background:#B30737;background:-webkit-linear-gradient(left, #fff, #b30737 5%, #b30737 95%, #fff);background:-o-linear-gradient(right, #fff, #b30737 5%, #b30737 95%, #fff);background:-moz-linear-gradient(right, #fff, #b30737 5%, #b30737 95%, #fff);background:linear-gradient(to right, #fff, #b30737 5%, #b30737 95%, #fff)}body{position:absolute;left:5%;right:5%;width:90%;top:10px;z-index:1;background-color:#fff;min-width:1050px;font-size:20px;max-zoom:150%}.leftcol{width:auto;position:relative}.rightcol{width:auto;position:relative}.bottomForm{position:absolute;clear:all;margin:10px 0}h1{position:relative;font-family:arial,sans-serif;font-size:32px;padding:4px 0 4px 0;text-decoration:underline}h2{position:relative;font-family:arial,sans-serif;font-size:28px;padding:4px 0 4px 0;text-decoration:underline}h3{position:relative;font-family:arial,sans-serif;font-size:24px;padding:4px 0 4px 0;text-decoration:underline}li{margin-left:10%;margin-top:2px;cursor:pointer}fieldset{border:0}#listBox{background:#fff;background-color:#fff;z-index:2;position:fixed;right:0;top:2%;max-height:90%;overflow:auto;border-left:2px solid black;padding:10px}.banner{padding:5px;position:relative;width:55%;max-height:75px;background:#B30737;background:-webkit-linear-gradient(left, #fff, #b30737 5%, #b30737 95%, #fff);background:-o-linear-gradient(right, #fff, #b30737 5%, #b30737 95%, #fff);background:-moz-linear-gradient(right, #fff, #b30737 5%, #b30737 95%, #fff);background:linear-gradient(to right, #fff, #b30737 5%, #b30737 95%, #fff);font-family:'Lucida',serif;font-size:32px;color:#FFF;text-decoration:none}.footer{padding-left:30px;width:100%}#otherButton,#futureButton,button,select{cursor:pointer}#otherNumber,#futureNumber{cursor:text}
+/*styles.less 
+//Pre-Compiled file for creating 'styles.css' document using LESS
+//css language. Download 'simpLESS' or some other compiler to realize changes
+//from this document to the css document. Or, just edit the css.
+//https:wearekiss.com/simpless 
+//https:lesscss.org 
+Variables*/
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: arial, sans-serif;
+  cursor: default;
+}
+.centerDiv {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  width: 90%;
+}
+.gradient {
+  background: #B30737;
+  background: -webkit-linear-gradient(left, #ffffff, #b30737 5%, #b30737 95%, #ffffff);
+  background: -o-linear-gradient(right, #ffffff, #b30737 5%, #b30737 95%, #ffffff);
+  background: -moz-linear-gradient(right, #ffffff, #b30737 5%, #b30737 95%, #ffffff);
+  background: linear-gradient(to right, #ffffff, #b30737 5%, #b30737 95%, #ffffff);
+}
+body {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  width: 90%;
+  top: 10px;
+  z-index: 1;
+  background-color: #ffffff;
+  min-width: 1050px;
+  font-size: 20px;
+  max-zoom: 150%;
+}
+.leftcol {
+  width: auto;
+  position: relative;
+}
+.rightcol {
+  width: auto;
+  position: relative;
+}
+.bottomForm {
+  position: absolute;
+  clear: all;
+  margin: 10px 0px;
+}
+h1 {
+  position: relative;
+  font-family: arial, sans-serif;
+  font-size: 32px;
+  padding: 4px 0px 4px 0px;
+  text-decoration: underline;
+}
+h2 {
+  position: relative;
+  font-family: arial, sans-serif;
+  font-size: 28px;
+  padding: 4px 0px 4px 0px;
+  text-decoration: underline;
+}
+h3 {
+  position: relative;
+  font-family: arial, sans-serif;
+  font-size: 24px;
+  padding: 4px 0px 4px 0px;
+  text-decoration: underline;
+}
+li {
+  margin-left: 10%;
+  margin-top: 2px;
+  cursor: pointer;
+}
+fieldset {
+  border: none;
+}
+#listBox {
+  background: #ffffff;
+  background-color: #ffffff;
+  z-index: 2;
+  position: fixed;
+  right: 0px;
+  top: 2%;
+  max-height: 90%;
+  overflow: auto;
+  border-left: 2px solid black;
+  padding: 10px;
+}
+.banner {
+  padding: 5px;
+  position: relative;
+  width: 65%;
+  max-height: 75px;
+  background: #B30737;
+  background: -webkit-linear-gradient(left, #ffffff, #b30737 5%, #b30737 95%, #ffffff);
+  background: -o-linear-gradient(right, #ffffff, #b30737 5%, #b30737 95%, #ffffff);
+  background: -moz-linear-gradient(right, #ffffff, #b30737 5%, #b30737 95%, #ffffff);
+  background: linear-gradient(to right, #ffffff, #b30737 5%, #b30737 95%, #ffffff);
+  font-family: 'Lucida', serif;
+  font-size: 32px;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+.footer {
+  padding-left: 30px;
+  width: 100%;
+}
+#otherButton,
+#futureButton,
+button,
+select {
+  cursor: pointer;
+}
+#otherNumber,
+#futureNumber {
+  cursor: text;
+}
+#enrichList li {
+  cursor: default;
+}
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .bottomForm,
+  .bottomForm * {
+    visibility: visible;
+  }
+  .bottomForm {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
